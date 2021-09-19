@@ -1,0 +1,666 @@
+\newcommand{\hydrogen}
+{
+    \filldraw[color=black, fill=white] (0,0) rectangle (4,4.5);
+    \node[black, anchor=north west] at (0,4.5) {\tiny 1};
+    \node[black] at (2,2.25) {\large H};
+    \node[black] at (2,1) {\tiny 420.69};
+}
+
+\newcommand{\helium}
+{
+    \filldraw[color=black, fill=white] (0,0) rectangle (4,4.5);
+    \node[black, anchor=north west] at (0,4.5) {\tiny 2};
+    \node[black] at (2,2.25) {\large He};
+    \node[black] at (2,1) {\tiny 420.69};
+}
+
+\newcommand{\sorbital}[3]
+{
+    \filldraw[color=black, fill=red!20] (0,0) rectangle (4,4.5);
+    \node[black, anchor=north west] at (0,4.5) {\tiny #1};
+    \node[black] at (2,2.25) {\large #2};
+    \node[black] at (2,1) {\tiny #3};
+}
+
+\newcommand{\porbital}[3]
+{
+    \filldraw[color=black, fill=green!20] (0,0) rectangle (4,4.5);
+    \node[black, anchor=north west] at (0,4.5) {\tiny #1};
+    \node[black] at (2,2.25) {\large #2};
+    \node[black] at (2,1) {\tiny #3};
+}
+
+\newcommand{\dorbital}[3]
+{
+    \filldraw[color=black, fill=yellow!20] (0,0) rectangle (4,4.5);
+    \node[black, anchor=north west] at (0,4.5) {\tiny #1};
+    \node[black] at (2,2.25) {\large #2};
+    \node[black] at (2,1) {\tiny #3};
+}
+
+\newcommand{\forbital}[3]
+{
+    \filldraw[color=black, fill=blue!20] (0,0) rectangle (4,4.5);
+    \node[black, anchor=north west] at (0,4.5) {\tiny #1};
+    \node[black] at (2,2.25) {\large #2};
+    \node[black] at (2,1) {\tiny #3};
+}
+
+\newcommand{\fiftyseven}
+{
+    \filldraw[color=black, fill=white] (0,0) rectangle (4,4.5);
+    \node[black] at (2,2.25) {\tiny 57-71};
+}
+
+\newcommand{\eightynine}
+{
+    \filldraw[color=black, fill=white] (0,0) rectangle (4,4.5);
+    \node[black] at (2,2.25) {\tiny 89-103};
+}
+
+\begin{tikzpicture}[scale=0.22]
+
+\hydrogen
+
+% Helium
+\begin{scope}[shift={(68,0)}]
+    \helium
+\end{scope}
+
+%% S ORBITAL %%
+
+% Lithium
+\begin{scope}[shift={(0,-4.5)}]
+    \sorbital{3}{Li}{420.69}
+\end{scope}
+
+% Beryllium
+\begin{scope}[shift={(4,-4.5)}]
+    \sorbital{4}{Be}{420.69}
+\end{scope}
+
+% Sodium
+\begin{scope}[shift={(0,-9)}]
+    \sorbital{11}{Na}{420.69}
+\end{scope}
+
+% Magnesium
+\begin{scope}[shift={(4,-9)}]
+    \sorbital{12}{Mg}{420.69}
+\end{scope}
+
+% Potassium
+\begin{scope}[shift={(0,-13.5)}]
+    \sorbital{19}{K}{420.69}
+\end{scope}
+
+% Calcium
+\begin{scope}[shift={(4,-13.5)}]
+    \sorbital{19}{Ca}{420.69}
+\end{scope}
+
+% Rubidium
+\begin{scope}[shift={(0,-18)}]
+    \sorbital{37}{Rb}{420.69}
+\end{scope}
+
+% Strontium
+\begin{scope}[shift={(4,-18)}]
+    \sorbital{38}{Sr}{420.69}
+\end{scope}
+
+% Caesium
+\begin{scope}[shift={(0,-22.5)}]
+    \sorbital{55}{Cs}{420.69}
+\end{scope}
+
+% Barium
+\begin{scope}[shift={(4,-22.5)}]
+    \sorbital{56}{Ba}{420.69}
+\end{scope}
+
+% Francium
+\begin{scope}[shift={(0,-27)}]
+    \sorbital{87}{Fr}{420.69}
+\end{scope}
+
+% Radium
+\begin{scope}[shift={(4,-27)}]
+    \sorbital{88}{Ra}{420.69}
+\end{scope}
+
+%% D ORBITAL %%
+
+% Scandium
+\begin{scope}[shift={(8,-13.5)}]
+    \dorbital{21}{Sc}{420.69}
+\end{scope}
+
+% Titanium
+\begin{scope}[shift={(12,-13.5)}]
+    \dorbital{22}{Ti}{420.69}
+\end{scope}
+
+% Vanadium
+\begin{scope}[shift={(16,-13.5)}]
+    \dorbital{23}{Va}{420.69}
+\end{scope}
+
+% Chromium
+\begin{scope}[shift={(20,-13.5)}]
+    \dorbital{24}{Cr}{420.69}
+\end{scope}
+
+% Manganese
+\begin{scope}[shift={(24,-13.5)}]
+    \dorbital{25}{Mn}{420.69}
+\end{scope}
+
+% Iron
+\begin{scope}[shift={(28,-13.5)}]
+    \dorbital{26}{Fe}{420.69}
+\end{scope}
+
+% Cobalt
+\begin{scope}[shift={(32,-13.5)}]
+    \dorbital{27}{Co}{420.69}
+\end{scope}
+
+% Nickel
+\begin{scope}[shift={(36,-13.5)}]
+    \dorbital{28}{Ni}{420.69}
+\end{scope}
+
+% Copper
+\begin{scope}[shift={(40,-13.5)}]
+    \dorbital{29}{Cu}{420.69}
+\end{scope}
+
+% Zinc
+\begin{scope}[shift={(44,-13.5)}]
+    \dorbital{30}{Zn}{420.69}
+\end{scope}
+
+% Yttrium
+\begin{scope}[shift={(8,-18)}]
+    \dorbital{39}{Y}{420.69}
+\end{scope}
+
+% Zirconium
+\begin{scope}[shift={(12,-18)}]
+    \dorbital{40}{Zr}{420.69}
+\end{scope}
+
+% Niobium
+\begin{scope}[shift={(16,-18)}]
+    \dorbital{41}{Nb}{420.69}
+\end{scope}
+
+% Molybdenum
+\begin{scope}[shift={(20,-18)}]
+    \dorbital{42}{Mo}{420.69}
+\end{scope}
+
+% Technitium
+\begin{scope}[shift={(24,-18)}]
+    \dorbital{43}{Tc}{420.69}
+\end{scope}
+
+% Ruthenium
+\begin{scope}[shift={(28,-18)}]
+    \dorbital{44}{Ru}{420.69}
+\end{scope}
+
+% Rhodium
+\begin{scope}[shift={(32,-18)}]
+    \dorbital{45}{Rh}{420.69}
+\end{scope}
+
+% Palladium
+\begin{scope}[shift={(36,-18)}]
+    \dorbital{46}{Pd}{420.69}
+\end{scope}
+
+% Silver
+\begin{scope}[shift={(40,-18)}]
+    \dorbital{47}{Ag}{420.69}
+\end{scope}
+
+% Cadmium
+\begin{scope}[shift={(44,-18)}]
+    \dorbital{48}{Cd}{420.69}
+\end{scope}
+
+% Halfnium
+\begin{scope}[shift={(12,-22.5)}]
+    \dorbital{72}{Hf}{420.69}
+\end{scope}
+
+% Tantalum
+\begin{scope}[shift={(16,-22.5)}]
+    \dorbital{73}{Ta}{420.69}
+\end{scope}
+
+% Tungsten
+\begin{scope}[shift={(20,-22.5)}]
+    \dorbital{74}{W}{420.69}
+\end{scope}
+
+% Rhenium
+\begin{scope}[shift={(24,-22.5)}]
+    \dorbital{75}{Re}{420.69}
+\end{scope}
+
+% Osmium
+\begin{scope}[shift={(28,-22.5)}]
+    \dorbital{76}{Os}{420.69}
+\end{scope}
+
+% Iridium
+\begin{scope}[shift={(32,-22.5)}]
+    \dorbital{77}{Ir}{420.69}
+\end{scope}
+
+% Platinum
+\begin{scope}[shift={(36,-22.5)}]
+    \dorbital{78}{Pt}{420.69}
+\end{scope}
+
+% Gold
+\begin{scope}[shift={(40,-22.5)}]
+    \dorbital{79}{Au}{420.69}
+\end{scope}
+
+% Mercury
+\begin{scope}[shift={(44,-22.5)}]
+    \dorbital{80}{Hg}{420.69}
+\end{scope}
+
+% Rutherfordium
+\begin{scope}[shift={(12,-27)}]
+    \dorbital{104}{Rf}{420.69}
+\end{scope}
+
+% Dubnium
+\begin{scope}[shift={(16,-27)}]
+    \dorbital{105}{Db}{420.69}
+\end{scope}
+
+% Seaborgium
+\begin{scope}[shift={(20,-27)}]
+    \dorbital{106}{Sg}{420.69}
+\end{scope}
+
+% Bohrium
+\begin{scope}[shift={(24,-27)}]
+    \dorbital{107}{Bh}{420.69}
+\end{scope}
+
+% Hassium
+\begin{scope}[shift={(28,-27)}]
+    \dorbital{108}{Hs}{420.69}
+\end{scope}
+
+% Meitnerium
+\begin{scope}[shift={(32,-27)}]
+    \dorbital{109}{Mt}{420.69}
+\end{scope}
+
+% Darmstadtium
+\begin{scope}[shift={(36,-27)}]
+    \dorbital{110}{Ds}{420.69}
+\end{scope}
+
+% Roentgenium
+\begin{scope}[shift={(40,-27)}]
+    \dorbital{111}{Rg}{420.69}
+\end{scope}
+
+% Copernicium
+\begin{scope}[shift={(44,-27)}]
+    \dorbital{112}{Cn}{420.69}
+\end{scope}
+
+%% P ORBITAL %%
+
+% Boron
+\begin{scope}[shift={(48,-4.5)}]
+    \porbital{5}{B}{420.69}
+\end{scope}
+
+% Carbon
+\begin{scope}[shift={(52,-4.5)}]
+    \porbital{6}{C}{420.69}
+\end{scope}
+
+% Nitrogen
+\begin{scope}[shift={(56,-4.5)}]
+    \porbital{7}{N}{420.69}
+\end{scope}
+
+% Oxygen
+\begin{scope}[shift={(60,-4.5)}]
+    \porbital{8}{O}{420.69}
+\end{scope}
+
+% Fluorine
+\begin{scope}[shift={(64,-4.5)}]
+    \porbital{9}{F}{420.69}
+\end{scope}
+
+% Neon
+\begin{scope}[shift={(68,-4.5)}]
+    \porbital{10}{Ne}{420.69}
+\end{scope}
+
+% Aluminum
+\begin{scope}[shift={(48,-9)}]
+    \porbital{13}{Al}{420.69}
+\end{scope}
+
+% Silicon
+\begin{scope}[shift={(52,-9)}]
+    \porbital{14}{Si}{420.69}
+\end{scope}
+
+% Phosphorus
+\begin{scope}[shift={(56,-9)}]
+    \porbital{15}{P}{420.69}
+\end{scope}
+
+% Sulfur
+\begin{scope}[shift={(60,-9)}]
+    \porbital{16}{S}{420.69}
+\end{scope}
+
+% Chlorine
+\begin{scope}[shift={(64,-9)}]
+    \porbital{17}{Cl}{420.69}
+\end{scope}
+
+% Argon
+\begin{scope}[shift={(68,-9)}]
+    \porbital{18}{Ar}{420.69}
+\end{scope}
+
+% Gallium
+\begin{scope}[shift={(48,-13.5)}]
+    \porbital{31}{Ga}{420.69}
+\end{scope}
+
+% Germanium
+\begin{scope}[shift={(52,-13.5)}]
+    \porbital{32}{Ge}{420.69}
+\end{scope}
+
+% Arsenic
+\begin{scope}[shift={(56,-13.5)}]
+    \porbital{33}{As}{420.69}
+\end{scope}
+
+% Selenium
+\begin{scope}[shift={(60,-13.5)}]
+    \porbital{34}{Se}{420.69}
+\end{scope}
+
+% Bromine
+\begin{scope}[shift={(64,-13.5)}]
+    \porbital{35}{Br}{420.69}
+\end{scope}
+
+% Krypton
+\begin{scope}[shift={(68,-13.5)}]
+    \porbital{36}{Kr}{420.69}
+\end{scope}
+
+% Indium
+\begin{scope}[shift={(48,-18)}]
+    \porbital{49}{In}{420.69}
+\end{scope}
+
+% Tin
+\begin{scope}[shift={(52,-18)}]
+    \porbital{50}{Sn}{420.69}
+\end{scope}
+
+% Antimony
+\begin{scope}[shift={(56,-18)}]
+    \porbital{51}{Sb}{420.69}
+\end{scope}
+
+% Tellurium
+\begin{scope}[shift={(60,-18)}]
+    \porbital{52}{Te}{420.69}
+\end{scope}
+
+% Iodine
+\begin{scope}[shift={(64,-18)}]
+    \porbital{53}{I}{420.69}
+\end{scope}
+
+% Xenon
+\begin{scope}[shift={(68,-18)}]
+    \porbital{54}{Xe}{420.69}
+\end{scope}
+
+% Thallium
+\begin{scope}[shift={(48,-22.5)}]
+    \porbital{81}{Tl}{420.69}
+\end{scope}
+
+% Lead
+\begin{scope}[shift={(52,-22.5)}]
+    \porbital{82}{Pb}{420.69}
+\end{scope}
+
+% Bismuth
+\begin{scope}[shift={(56,-22.5)}]
+    \porbital{83}{Bi}{420.69}
+\end{scope}
+
+% Polonium
+\begin{scope}[shift={(60,-22.5)}]
+    \porbital{84}{Po}{420.69}
+\end{scope}
+
+% Astatine
+\begin{scope}[shift={(64,-22.5)}]
+    \porbital{85}{At}{420.69}
+\end{scope}
+
+% Radon
+\begin{scope}[shift={(68,-22.5)}]
+    \porbital{86}{Rn}{420.69}
+\end{scope}
+
+% Nihonium
+\begin{scope}[shift={(48,-27)}]
+    \porbital{113}{Nh}{420.69}
+\end{scope}
+
+% Flerovium
+\begin{scope}[shift={(52,-27)}]
+    \porbital{114}{Fl}{420.69}
+\end{scope}
+
+% Moscovium
+\begin{scope}[shift={(56,-27)}]
+    \porbital{115}{Mc}{420.69}
+\end{scope}
+
+% Livermorium
+\begin{scope}[shift={(60,-27)}]
+    \porbital{116}{Lv}{420.69}
+\end{scope}
+
+% Tennessine
+\begin{scope}[shift={(64,-27)}]
+    \porbital{117}{Ts}{420.69}
+\end{scope}
+
+% Oganesson
+\begin{scope}[shift={(68,-27)}]
+    \porbital{118}{Og}{420.69}
+\end{scope}
+
+%% F ORBITAL %%
+
+\begin{scope}[shift={(8,-22.5)}]
+    \fiftyseven
+\end{scope}
+
+\begin{scope}[shift={(8,-27)}]
+    \eightynine
+\end{scope}
+
+% Lanthanum
+\begin{scope}[shift={(12,-33)}]
+    \forbital{57}{La}{420.69}
+\end{scope}
+
+% Cerium
+\begin{scope}[shift={(16,-33)}]
+    \forbital{58}{Ce}{420.69}
+\end{scope}
+
+% Praseodymium
+\begin{scope}[shift={(20,-33)}]
+    \forbital{59}{Pr}{420.69}
+\end{scope}
+
+% Neodymium
+\begin{scope}[shift={(24,-33)}]
+    \forbital{60}{Nd}{420.69}
+\end{scope}
+
+% Promethium
+\begin{scope}[shift={(28,-33)}]
+    \forbital{61}{Pm}{420.69}
+\end{scope}
+
+% Samarium
+\begin{scope}[shift={(32,-33)}]
+    \forbital{62}{Sm}{420.69}
+\end{scope}
+
+% Europium
+\begin{scope}[shift={(36,-33)}]
+    \forbital{63}{Eu}{420.69}
+\end{scope}
+
+% Gadolinium
+\begin{scope}[shift={(40,-33)}]
+    \forbital{64}{Gd}{420.69}
+\end{scope}
+
+% Terbium
+\begin{scope}[shift={(44,-33)}]
+    \forbital{65}{Tb}{420.69}
+\end{scope}
+
+% Dysprosium
+\begin{scope}[shift={(48,-33)}]
+    \forbital{66}{Dy}{420.69}
+\end{scope}
+
+% Holmium
+\begin{scope}[shift={(52,-33)}]
+    \forbital{67}{Ho}{420.69}
+\end{scope}
+
+% Erbium
+\begin{scope}[shift={(56,-33)}]
+    \forbital{68}{Er}{420.69}
+\end{scope}
+
+% Thulium
+\begin{scope}[shift={(60,-33)}]
+    \forbital{69}{Tm}{420.69}
+\end{scope}
+
+% Ytterbium
+\begin{scope}[shift={(64,-33)}]
+    \forbital{70}{Yb}{420.69}
+\end{scope}
+
+% Lutetium
+\begin{scope}[shift={(68,-33)}]
+    \dorbital{71}{Lu}{420.69}
+\end{scope}
+
+% Actinium
+\begin{scope}[shift={(12,-37.5)}]
+    \forbital{89}{Ac}{420.69}
+\end{scope}
+
+% Thorium
+\begin{scope}[shift={(16,-37.5)}]
+    \forbital{90}{Th}{420.69}
+\end{scope}
+
+% Protactinium
+\begin{scope}[shift={(20,-37.5)}]
+    \forbital{91}{Pa}{420.69}
+\end{scope}
+
+% Uranium
+\begin{scope}[shift={(24,-37.5)}]
+    \forbital{92}{U}{420.69}
+\end{scope}
+
+% Neptunium
+\begin{scope}[shift={(28,-37.5)}]
+    \forbital{93}{Np}{420.69}
+\end{scope}
+
+% Plutonium
+\begin{scope}[shift={(32,-37.5)}]
+    \forbital{94}{Pu}{420.69}
+\end{scope}
+
+% Americium
+\begin{scope}[shift={(36,-37.5)}]
+    \forbital{95}{Am}{420.69}
+\end{scope}
+
+% Curium
+\begin{scope}[shift={(40,-37.5)}]
+    \forbital{96}{Cm}{420.69}
+\end{scope}
+
+% Berkelium
+\begin{scope}[shift={(44,-37.5)}]
+    \forbital{97}{Bk}{420.69}
+\end{scope}
+
+% Californium
+\begin{scope}[shift={(48,-37.5)}]
+    \forbital{98}{Cf}{420.69}
+\end{scope}
+
+% Einsteinium
+\begin{scope}[shift={(52,-37.5)}]
+    \forbital{99}{Es}{420.69}
+\end{scope}
+
+% Fermium
+\begin{scope}[shift={(56,-37.5)}]
+    \forbital{100}{Fm}{420.69}
+\end{scope}
+
+% Mendelevium
+\begin{scope}[shift={(60,-37.5)}]
+    \forbital{101}{Md}{420.69}
+\end{scope}
+
+% Nobelium
+\begin{scope}[shift={(64,-37.5)}]
+    \forbital{102}{No}{420.69}
+\end{scope}
+
+% Lawrencium
+\begin{scope}[shift={(68,-37.5)}]
+    \dorbital{103}{Lr}{420.69}
+\end{scope}
+
+\end{tikzpicture}

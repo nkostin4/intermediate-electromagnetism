@@ -1,0 +1,12 @@
+\documentclass{article}
+\usepackage{pstricks}
+\usepackage{pst-electricfield}
+
+\begin{document}
+\psset{xunit=1cm}
+\begin{pspicture}(-6,-6)(6,6)
+\psframe*[linecolor=white!50](-6,-6)(6,6)
+\psgrid[subgriddiv=0,gridcolor=gray,griddots=10]
+\psElectricfield[Q={[-1 -2 2][1 2 2][-1 2 -2][1 -2 -2]},linecolor=red]
+\end{pspicture}
+\end{document}
