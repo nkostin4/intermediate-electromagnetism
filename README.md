@@ -13,6 +13,4 @@ This repository contains the course notes (and a few other things) for the PHGN 
 
 ## Contact
 
-Email: `nkostin@mymail.mines.edu`
-
-2021-02-07 18:00:00
+Email: `nkostin@mines.edu`
