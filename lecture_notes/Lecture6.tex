@@ -1,0 +1,214 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Set page geometry
+\usepackage[margin=2.5cm,headsep=0.5cm]{geometry}
+
+\input{../preamblex}
+
+\usepackage{fancyhdr,lastpage}
+\pagestyle{plain}
+
+\begin{document}
+
+\begin{center}
+    {\Huge Lecture 6: Conductors and Spherical Symmetry} \\[0.5cm]
+    {\Large March 12, 2021}
+\end{center}
+
+\vspace{1cm}
+
+More math! Expect this class to pretty much be math phys for a while (at least until we get to chapter 6).
+
+\begin{mdframed}[backgroundcolor=black!4, align=center, userdefinedwidth=0.8\textwidth, topline=false, bottomline=false, leftline=false, rightline=false, frametitle={Interlude}]
+
+\begin{center}
+    \iclicker[scale=0.28]Clicker question
+\end{center}
+
+\end{mdframed}
+
+Today, we'll solve Laplace's equation a few times in situations with spherical symmetry. We'll start with the easiest possible example: A charged spherical conductor, radius $a$ and total charge $Q$.
+
+\begin{minipage}{0.4\textwidth}
+\begin{figure}[H]
+\centering
+    \includegraphics[width=\textwidth]{figures/6l2.png}
+\end{figure}
+\end{minipage}
+~
+\begin{minipage}{0.5\textwidth}
+We've done this via Gauss's law and $\displaystyle \Delta V = -\int \bm{E} \cdot d\bm{\ell}$ in intro physics. We'll get $E$, $V$, and $\sigma$ in short order.
+\vspace{1em}
+\begin{gather*}
+    E(r) = \frac{k\ Q}{r^2}\ \text{outside},\quad E = 0\ \text{inside} \\
+    V(r) = \frac{k\ Q}{r}\ \text{outside},\quad V = \frac{k\ Q}{a}\ \text{inside} \\
+    \sigma = \frac{Q}{4\pi a^2}
+\end{gather*}
+\end{minipage}
+
+\vspace{1em}
+
+Now let's do the same thing with Laplace's equation. We need to shart from conditions on $V$. The boundary conditions are
+
+\begin{equation*}
+    \begin{cases} V(a) = V_o \\[1em] V(\infty) = 0 \end{cases} 
+\end{equation*}
+
+We have spherical symmetry, so $\nabla^2 V = 0$ becomes $\displaystyle \frac{1}{r^2} \frac{\partial}{\partial r} \left( r^2 \frac{\partial V}{\partial r} \right) = 0$.
+
+\vspace{1em}
+
+The mixed $r$'s, $\frac{1}{r}$'s, and $\frac{\partial}{\partial r}$'s suggest a polynomial solution or maybe an exponential. Let's guess polynomial first, so our ansatz is $V(r) = r^p$. Substituting this into Laplace's equation yields
+
+\begin{equation*}
+    \frac{1}{r^2} \frac{\partial}{\partial r} \left( r^2 \frac{\partial \left( r^p \right)}{\partial r} \right) = \frac{1}{r^2} \frac{\partial}{\partial r} \left( p r^{p+1} \right) = p \left( p + 1 \right) r^{p+2} = 0
+\end{equation*}
+
+If this is to hold for all $r$ (and it should), then it must be the case that $p = 0$ or $p = -1$. Then our solution becomes
+
+\begin{equation*}
+    V(r) = \frac{A}{r} + B \qquad\qquad \parbox[c]{0.5\textwidth}{We created a solution with two free parameters for a problem with two BCs. We should all stop and feel happy for a second.}
+\end{equation*}
+
+Now let's apply the boundary conditions. The requirement that the voltage be zero at infinty gives
+
+\begin{equation*}
+    V(\infty) = 0 \quad \implies \quad B = 0.
+\end{equation*}
+
+The voltage at the radius of the sphere is fixed at $V_o$. This gives
+
+\begin{equation*}
+    V(a) = \frac{A}{a} = V_o \quad \implies \quad A = V_o a. 
+\end{equation*}
+
+So we have
+
+\begin{equation*}
+    V(r) = \begin{cases} V_o, & r < a, \\[1em] \frac{V_o a}{r}, & r \geqslant a \end{cases} \qquad \text{and} \qquad \bm{E}(r) = \begin{cases} 0, & r < a, \\[1em] \frac{V_o a}{r^2}, & r \geqslant a \end{cases}.
+\end{equation*}
+
+(Where we obtained $\bm{E}$ via the relationship $\bm{E} = -\nabla^2 V$). Finally, we can get the charge density $\sigma$ from the boundary conditions.
+
+\vspace{1em}
+
+This is the process of solving Laplace's equation, from beginning to end.
+
+\vspace{1em}
+
+Now let's spice it up: Take a conducting sphere at some fixed voltage (let's call it $V=0$, so that it's grounded), and stick it in a uniform electric field. There'll be a charge separation on the sphere, and the solution will now depend on $r$ and $\theta$. The electric field will probably also be altered in response to the redistributed charges.
+
+\begin{minipage}{0.4\textwidth}
+\begin{figure}[H]
+\centering
+    \includegraphics[width=\textwidth]{figures/6l4.png}
+\end{figure}
+\end{minipage}
+~
+\begin{minipage}{0.5\textwidth}
+Let's hit this with Laplace's equation. And for that we need boundary conditions. At large $r$ (\textit{i.e.} far away from the conducting sphere) the electric field points straight up:
+\begin{equation*}
+    \bm{E} = E_o \khat \quad \implies \quad  V(r,\theta) = -E_o \underbrace{r\cos{\theta}}_{z}
+\end{equation*}
+We need building blocks to construct our solution. What we used before, $V(r) = \frac{A}{r} + B$, is inadequate, because there's no $\theta$ dependence. \\[1em]
+There existst an infinite collection of solutions to Laplace's equation. There are known as the \emph{spherical harmonics}. The book spots us a couple fo the simplest ones involving $r$ and $\cos{\theta}$, allowing us to construct a trial $V$:
+\begin{equation*}
+    V(r,\theta) = \frac{A}{r} + B + \frac{C\cos{\theta}}{r^2} + D r\cos{\theta}
+\end{equation*}
+\end{minipage}
+
+\vspace{2em}
+
+We have four undetermined constants and two boundary conditions. We need to invoke some physics knowlege to make two of those constants vanish.
+
+\vspace{1em}
+
+First, $V$ is arbitrary up to a constant, so $B=0$. We suspect $A$ is also zero, though we can't prove it solidly without techniques from chapter 5. (Recall that $A/r$ is the potential of a uniformly charged sphere, so it's probably not necessary to build up our solution.) The cool thing is that we can just \emph{guess} $A=0$, and if we get it to work, uniqueness say's we're right!
+
+\vspace{1em}
+
+So let's work with $\displaystyle V(r,\theta) = \frac{C\ \cos{\theta}}{r^2} + D\ r\cos{\theta}$. Now invoke the boundary condition from earlier: at large $r$, $V(r,\theta) = -E_o r\cos{\theta}$. Using our ansatz, this gives us
+
+\begin{equation*}
+    V(r,\theta) = \cancelto{0}{\frac{C\ \cos{\theta}}{r^2}} + D r\cos{\theta} \overset{\text{set}}{=} -E_o r\cos{\theta} \quad \implies \quad D = -V_o
+\end{equation*}
+
+That means, we so far have $\displaystyle V(r,\theta) = \frac{C\ \cos{\theta}}{r^2} - E_o r \cos{\theta}$. Now we also know that on the surface of the sphere (that is, at $r = a$) the voltage is fixed at zero. This gives us
+
+\begin{equation*}
+    V(a,\theta) = \frac{C\ \cos{\theta}}{a^2} - E_o a \cos{\theta} = 0 \quad \implies \quad C = E_o a^3
+\end{equation*}
+
+And so we get
+
+\begin{equation*}
+    V(r,\theta) = -E_o r \cos{\theta} + \frac{E_o a^3 \cos{\theta}}{r^2}
+\end{equation*}
+
+We can get the field components from $-\nabla V$:
+
+\begin{equation*}
+    \begin{cases} E_r (r,\theta) = E_o \left( 1 + \frac{2a^3}{r^3} \right) \cos{\theta} \\[1em] E_{\theta} (r,\theta) = -E_o \left( 1 - \frac{a^3}{r^3} \right) \sin{\theta}. \end{cases}
+\end{equation*}
+
+It would be a fun exercise to make sure these satisfy the generic boundary conditions for $E^{\parallel}$ and $E^{\perp}$. A fun exercise \emph{for you}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/bane.jpeg}
+\end{figure}
+
+\begin{minipage}{0.5\textwidth}
+As $r \to \infty$, we get
+\begin{equation*}
+    \begin{cases} E_r = E_o \cos{\theta} \\[1em] E_{\theta} = -E_o \sin{\theta} \end{cases}
+\end{equation*}
+Solid so far. And if we go to find $\sigma$, we get
+\begin{equation*}
+    \sigma = 3\epsilon_o E_o \cos{\theta},
+\end{equation*}
+which, when inegrated over the whole sphere, gives zero.
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{figure}[H]
+\centering
+    \includegraphics[width=\textwidth]{figures/6l8.png}
+\end{figure}
+\end{minipage}
+
+\newpage
+
+\subsubsection*{A partial generalization to arbitrary objects.}
+
+When things aren't spheres, math gets hard (or easy, if you're good at numerical analysis). But here's a general principle that's pretty handy.
+
+\vspace{1em}
+
+Consider two connected, charged conducting spheres of radii $a$ and $b$.
+
+\begin{minipage}{0.4\textwidth}
+\begin{figure}[H]
+\centering
+    \includegraphics[width=\textwidth]{figures/6l9.png}
+\end{figure}
+\end{minipage}
+~
+\begin{minipage}{0.5\textwidth}
+If these are reasonably well separated,
+\begin{equation*}
+    V_a (a) = \frac{Q_a}{4\pi\epsilon_o a} = \frac{Q_b}{4\pi\epsilon_o b} = V_b(b),
+\end{equation*}
+and note that $\sigma_a = \frac{Q_a}{4\pi a^2}$. Then
+\begin{equation*}
+    \frac{Q_a}{4\pi a^2 b} = \frac{Q_b}{4\pi b^2 a} \implies \frac{\sigma_a}{b} = \frac{\sigma_b}{a} \quad \implies \frac{\sigma_a}{\sigma_b} = \frac{b}{a}.
+\end{equation*}
+\end{minipage}
+
+\vspace{2em}
+
+And electric field is proportional to surface charge density, so places with small radii of curvature (\textit{i.e.} pointy bits) exhibit strong $E$-fields. This has a variety of practical applications and interesting manifestations.
+
+\end{document}

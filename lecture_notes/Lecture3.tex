@@ -1,0 +1,390 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Set page geometry
+\usepackage[margin=2.5cm,headsep=0.5cm]{geometry}
+
+\input{../preamblex}
+
+\usepackage{fancyhdr,lastpage}
+\pagestyle{plain}
+
+\begin{document}
+
+\begin{center}
+    {\Huge Lecture 3: Voltage, Energy, and Delta Functions} \\[0.5cm]
+    % {\Large January ??, 20??}
+\end{center}
+
+\vspace{1cm}
+
+At this point, we have
+\begin{equation*}
+    \nabla \cdot \bm{E} = \frac{\rho}{\epsilon_o} \qquad \text{and} \qquad \nabla \times \bm{E} = \bm{0},
+\end{equation*}
+
+plus two boundary conditions that follow from those:
+\begin{equation*}
+    \begin{cases} \displaystyle E_{1}^{\perp} - E_{2}^{\perp} = \frac{\sigma}{\epsilon_o} \\ \displaystyle E_{1}^{\parallel} - E_{2}^{\parallel} = 0. \end{cases}
+\end{equation*}
+
+We can also derive Coulomb's law from Gauss's law:
+\begin{equation*}
+    \bm{E}(\bm{x}) = \int \frac{k\ \rho(\bm{x'})\ d^3x'\ \ \left( \bm{x} - \bm{x'} \right)}{\left| \bm{x} - \bm{x'} \right|^3}.
+\end{equation*}
+
+Strictly speaking, this is more than enough to do electrostatics. Knowing charges gives us the fields, which lead to forces via $\displaystyle \bm{F} = q\bm{E}$.
+
+\vspace{1em}
+
+But, as you may recall from intro physics, sometimes we prefer to cast things in terms of voltage and energy instead of field and force.
+
+\vspace{1em}
+
+Given some curl-free field ($\nabla \times \bm{E} = \bm{0}$ everywhere), we can define some scalar function $V$ such that
+\begin{equation*}
+    \bm{E}(\bm{x}) = -\nabla V (\bm{x}),
+\end{equation*}
+
+which goes by a few different names, including the \emph{voltage}, the \emph{electric potential}, and just the \emph{potential}.
+
+\vspace{1em}
+
+Notably, the potential $V$ carries the same information as the field $\bm{E}$, but the potential is a bit more pleasant to deal with for being a scalar, and it also hooks into energy pretty directly. We've seen before that
+\begin{equation*}
+    \Delta U = q \Delta V.
+\end{equation*}
+
+And we've seen that we can construct $V$ according to either
+
+\begin{gather*}
+    \Delta V = -\int \bm{E} \cdot d\bm{\ell} \qquad\qquad \parbox[c]{0.6\textwidth}{A statement about the difference in voltage between two points} \\[1.4em]
+    \text{or} \qquad\qquad \parbox[c]{0.5\textwidth}{\textcolor{white}{here}} \\[1.4em]
+    V(\bm{x}) = \frac{1}{4\pi\epsilon_o} \int \frac{\rho(\bm{x'})\ d^3x'}{\left| \bm{x} - \bm{x'} \right|} \qquad\qquad \parbox[c]{0.6\textwidth}{A generalization of the potential from a point charge, $\displaystyle V = \frac{kq}{r}.$}
+\end{gather*}
+
+\newpage
+
+We can arrange the relationships between all these in a handy little square:
+
+\begin{figure}[H]
+\captionsetup{width=0.8\textwidth, labelfont={color=black,bf}, textfont={color=black}}
+\centering
+\begin{tikzpicture}[scale=0.6]
+    % Nodes
+    \draw[WHITE] (5,5) -- (5.707,5.707) node[black, anchor=south west] {Energy};
+    \draw[BLACK] (5,5) circle (1);
+    \node[BLACK] at (5,5) {$\displaystyle \Scale[1.4]{U}$};
+    \draw[WHITE] (-5,5) -- (-5-0.707,5.707) node[black, anchor=south east] {Force};
+    \draw[BLACK] (-5,5) circle (1);
+    \node[BLACK] at (-5,5) {$\displaystyle \Scale[1.4]{\vec{F}}$};
+    \draw[WHITE] (-5,-5) -- (-5.707,-5.707) node[black, anchor=north east] {Field};
+    \draw[BLACK] (-5,-5) circle (1);
+    \node[BLACK] at (-5,-5) {$\displaystyle \Scale[1.4]{\vec{E}}$};
+    \draw[WHITE] (5,-5) -- (5.707,-5-0.707) node[black, anchor=north west] {Potential};
+    \draw[BLACK] (5,-5) circle (1);
+    \node[BLACK] at (5,-5) {$\displaystyle \Scale[1.4]{V}$};
+    % Top Arrow
+    \draw[BLACK, ultra thick, ->] (-3.8,5.3) -- (3.8,5.3) node[black, midway, above] {$\displaystyle \Delta U = -\int \bm{F} \cdot d\bm{\ell}$};
+    \draw[BLACK, ultra thick, <-] (-3.8,4.7) -- (3.8,4.7) node[black, midway, below] {$\displaystyle \bm{F} = -\nabla U$};
+    % Bottom arrow
+    \draw[BLACK, ultra thick, ->] (-3.8,-5.3) -- (3.8,-5.3) node[black, midway, below] {$\displaystyle \Delta V = -\int \bm{E} \cdot d\bm{\ell}$};
+    \draw[BLACK, ultra thick, <-] (-3.8,-4.7) -- (3.8,-4.7) node[black, midway, above] {$\displaystyle \bm{E} = -\nabla V$};
+    % Right arrow
+    \draw[BLACK, ultra thick, <-] (5,3.8) -- (5,0.3);
+    \node[BLACK] at (5,0) {$\displaystyle \Delta U = q\Delta V$};
+    \draw[BLACK, ultra thick, ->] (5,-0.3) -- (5,-3.8);
+    % Left arrow
+    \draw[BLACK, ultra thick, <-] (-5,3.8) -- (-5,0.3);
+    \node[BLACK] at (-5,0) {$\displaystyle \bm{F} = q \bm{E}$};
+    \draw[BLACK, ultra thick, ->] (-5,-0.3) -- (-5,-3.8);
+\end{tikzpicture}
+\label{fig:3:a}
+\end{figure}
+
+Everything thus far is from intro physics, so let's start adding some new stuff. We have both
+\begin{equation*}
+    \nabla \cdot \bm{E} = \frac{\rho}{\epsilon_o} \qquad \text{and} \qquad \bm{E} = -\nabla V.
+\end{equation*}
+
+Substituting the latter into the former yields
+\begin{equation*}
+    \nabla \cdot \underbrace{\left( -\nabla V \right)}_{\displaystyle \bm{E}} = \frac{\rho}{\epsilon_o} \quad \implies \quad \boxed{\nabla^2 V = -\frac{\rho}{\epsilon_o}}
+\end{equation*}
+
+which is Poisson's equation --- the partial differential equation that yields $V$ in electrostatics given a known source $\rho$.
+
+\vspace{1em}
+
+We will be solving Poisson's equation a lot in the near future, and to solve PDEs, we need boundary conditions. What might be the boundary conditions on $V$ be?
+
+\vspace{1em}
+
+Well, we know
+\begin{equation*}
+    \Delta V = V_{\text{above}} - V_{\text{below}} = -\int \bm{E} \cdot d\bm{\ell}
+\end{equation*}
+
+and real $\bm{E}$-fields are always finite. Thus, for sufficiently small $d\bm{\ell}$, $\displaystyle \Delta V \to 0$. In other words, as the path length shrinks to zero, so too does the integral:
+\begin{equation*}
+    V_{\text{above}} = V_{\text{below}} \qquad \boxed{\text{So } V \text{ is always continuous.}}
+\end{equation*}
+
+That being said, we know there can be discontinuities in $\bm{E}$. And $\bm{E}$-fields come about by taking derivatives of $V$ (recall that $\bm{E} = -\nabla V$). So consider some boundary, and let $n$ denote the direction normal to the boundary (pointing from ``below'' to ``above''). We have the boundary condition on the perpendicular component of the electric field:
+\begin{equation*}
+    E_{\text{above}}^{\perp} - E_{\text{below}}^{\perp} = \frac{\sigma}{\epsilon_o}
+\end{equation*}
+
+Using $\displaystyle E^{\perp} = -\frac{\partial V}{\partial n}$, gives us
+\begin{equation*}
+    \boxed{\frac{\partial V_{\text{below}}}{\partial n} - \frac{\partial V_{\text{above}}}{\partial n} = \frac{\sigma}{\epsilon_o}}
+\end{equation*}
+
+So while $V$ is always continuous, \emph{derivatives} of $V$ aren't necessarily. At least, not the derivative perpendicular to a boundary. Since $E^{\parallel}$ is continuous, so must be the derivative of $V$ in any direction parallel to the surface.
+
+\begin{mdframed}[backgroundcolor=black!4, align=center, userdefinedwidth=0.8\textwidth, topline=false, bottomline = false, leftline = false, rightline = false, frametitle = {Interlude}]
+\begin{center}
+\iclicker[scale=0.28]Clicker question
+\end{center}
+\end{mdframed}
+
+\vspace{1em}
+
+\section*{Energy of a Charge Distribution}
+
+What is the work it takes to move a charge $q$ from $\bm{x} = \bm{a}$ to $\bm{x} = \bm{b}$? We know work is given by $\displaystyle \int \bm{F} \cdot d\bm{\ell}$. The electric field exerts a force on the charge on the charge according to $\bm{F} = q\bm{E}$. Thus, the minimum force needed to overcome this field is $\bm{F} = -q\bm{E}$. It follows that the work done in moving a charge is
+\begin{equation*}
+    \text{Work } = \int \bm{F} \cdot d\bm{\ell} = -q \int_{\bm{a}}^{\bm{b}} \bm{E} \cdot d\bm{\ell} = q \left[ V(\bm{b}) - V(\bm{a}) \right].
+\end{equation*}
+
+Assuming we set the potential to be zero at infinity, the work required to bring in a charge from infinity to some location $\bm{x}$ is
+\begin{equation*}
+    \text{Work } = q \left[ V(\bm{x}) - \cancelto{0}{V(\infty)} \right] = q V(\bm{x}).
+\end{equation*}
+
+Imagine bringing a charge $q_1$ from infinity to the origin in empty space. This takes no work, since there is no field to fight against. However, once at the origin, the charge $q_1$ sets up a potential according to
+\begin{equation*}
+    V = \frac{1}{4\pi\epsilon_o} \frac{q_1}{\left| \bm{x} - \bm{x'} \right|} = \frac{1}{4\pi\epsilon_o} \frac{q_1}{r}.
+\end{equation*}
+
+The work done in bringing in another charge $q_2$ from infinity to some position $r$ is
+\begin{equation*}
+    W_{2} = q_2 \underbrace{\left( \frac{1}{4\pi\epsilon_o} \frac{q_1}{r} \right)}_{\displaystyle V} = \frac{1}{4\pi\epsilon_o} \frac{q_1 q_2}{r} \qquad\qquad \parbox[c]{0.4\textwidth}{This is the energy of interaction $U$ between two charges separated a distance $r$.}
+\end{equation*}
+
+Now we fix $q_1$ and $q_2$ in place, and let $r_{12}$ represent the distance between them. The work done in bringing in a third charge is
+\begin{equation*}
+    W_3 = q_3 \underbrace{\left( \frac{1}{4\pi\epsilon_o} \right) \left( \frac{q_1}{r_{13}} + \frac{q_2}{r_{23}} \right)}_{\displaystyle \text{potential from } q_1 \text{ and } q_2.}
+\end{equation*}
+
+\begin{figure}[H]
+\captionsetup{width=0.8\textwidth, labelfont={color=black,bf}, textfont={color=black}}
+\centering
+\begin{tikzpicture}
+    \filldraw[black] (0,0) circle (0.1) node[black, anchor=north west] {$q_1$};
+    \draw[black, ->] (2,-1) .. controls (1.5,-1) and (0,-1) .. (0,-0.2);
+    \draw[black] (0,0) -- (3,1) node[black, midway, anchor=north west] {$r_{13}$};
+    \filldraw[black] (3,1) circle (0.1) node[black, anchor=north] {$q_3$};
+    \draw[black, ->] (6,1) .. controls (5,1.25) and (3.5,0.75) .. (3.2,1);
+    \draw[black] (3,1) -- (-2,2) node[black, midway, anchor=south west] {$r_{23}$};
+    \draw[black] (0,0) -- (-2,2) node[black, midway, anchor=north east] {$r_{12}$};
+    \filldraw[black] (-2,2) circle (0.1) node[black, above] {$q_2$};
+    \draw[black, ->] (-5,1) .. controls (-4,2) and (-3,1) .. (-2.2,2);
+\end{tikzpicture}
+\label{fig:3:b}
+\end{figure}
+
+The total work in assembling these three charges is
+\begin{equation*}
+    W = \frac{1}{4\pi\epsilon_o} \left( \frac{q_1 q_2}{r_{12}} + \frac{q_1 q_3}{r_{13}} + \frac{q_2 q_3}{r_{23}} \right)
+\end{equation*}
+
+The work done in assembling a collection of discrete charges is also the energy we'd get if we dismantled the system. That is, it represents the energy stored in the configuration. We can generalize to $n$ number of particles:
+\begin{equation*}
+    U = \frac{1}{2} \left(\frac{1}{4\pi\epsilon_o}\right) \sum\limits_{i = 1}^{n} \sum\limits_{j \neq i}^{n} \frac{q_i q_j}{r_{ij}},
+\end{equation*}
+
+where the factor of $1/2$ arises because we're double counting each pair. Now, instead of a collection of discrete charges, consider some continuous charge distribution, with differential charge elements $dq_1$ and $dq_2$ (located on the same charge distribution). Then the sum becomes an integral and we have
+\begin{equation}
+    U = \frac{1}{2} \iint \frac{k\ dq_1\ dq_2}{r_{12}} = \frac{1}{2} \int \frac{k\ \rho(\bm{x}_1)\ \rho(\bm{x}_2)\ d^3x_1\ d^3x_2}{\left| \bm{x}_1 - \bm{x}_2 \right|} \tag{1} \label{eq:3:uu}
+\end{equation}
+
+Again, $\rho(\bm{x}_1)$ and $\rho(\bm{x}_2)$ describe the \underline{same} charge distribution --- we're breaking the charge distribution into little $dq$'s and check each against all the others.
+
+\vspace{1em}
+
+As an alternative, note that $\displaystyle \int \frac{k\ \rho(\bm{x}_1)\ d^3x_1}{\left| \bm{x}_1 - \bm{x}_2 \right|}$ is how we'd write the voltage due to $\rho$ at $\bm{x}_2$ (the location of the second charge in a particular pair). Thus, we can re-write the energy of the charge distribution as
+\begin{equation}
+    \boxed{U = \frac{1}{2} \int \rho(\bm{x'})\ V(\bm{x'})\ d^3x'} \tag{2} \label{eq:3:u}
+\end{equation}
+
+\begin{mdframed}[backgroundcolor=WHITE,align=left,userdefinedwidth=0.95\textwidth, topline=false, rightline=false,frametitle={Alternate derivation of (\ref{eq:3:u})}]
+
+Start with the double sum that gives the energy of a collection of discrete charges:
+
+\begin{equation*}
+    U = \frac{1}{2} \left( \frac{1}{4\pi\epsilon_o} \right) \sum\limits_{i = 1}^{n} \sum\limits_{j \neq 1}^{n} \frac{q_i\ q_j}{r_{ij}}.
+\end{equation*}
+
+We can re-write this expression by pulling out a factor of $q_i$ from the second sum:
+
+\begin{equation*}
+    U = \frac{1}{2} \sum\limits_{i = 1}^{n} q_i \underbrace{\left( \sum\limits_{j \neq i}^{n} \frac{1}{4\pi\epsilon_o} \frac{q_j}{r_{ij}} \right)}_{\parbox[c]{0.14\textwidth}{\centering potential at $r_i$ (position of $q_i$) due to all other charges}} = \frac{1}{2} \sum\limits_{i = 1}^{n} q_i V
+\end{equation*}
+
+Now generalizing to a continuous charge distribution:
+
+\begin{equation*}
+    \boxed{U = \frac{1}{2} \int \rho (\bm{x'})\ V(\bm{x'})\ d^3x'}
+\end{equation*}
+
+\end{mdframed}
+
+The expression for the energy of the system explicitly reference charge. This is not shocking --- we're used to potential energy being a thing associated with pairs of charges. But here's where it gets interesting. We're going to re-write the energy in terms of the field, thereby eliminating $\rho$ and $V$ in favor of $\bm{E}$.
+
+\vspace{1em}
+
+From Gauss's law, we know that $\displaystyle \nabla \cdot \bm{E} = \frac{\rho}{\epsilon_o} \implies \rho = \epsilon_o \left( \nabla \cdot \bm{E} \right).$. Substituting that into (\ref{eq:3:u}) gives us
+\begin{equation*}
+    U = \frac{\epsilon_o}{2} \int \left( \nabla \cdot \bm{E} \right)\ V\ d^3x.
+\end{equation*}
+
+For any scalar-valued function $f$ and vector-valued function $\bm{A}$, the following holds:
+\begin{equation*}
+    \nabla \cdot \left( f \bm{A} \right) = f \left( \nabla \cdot \bm{A} \right) + \bm{A} \cdot \left( \nabla f \right).
+\end{equation*}
+
+Taking $f = V$ and $\bm{A} = \bm{E}$, we have
+\begin{equation*}
+    \nabla \cdot \left( V \bm{E} \right) = V \left( \nabla \cdot \bm{E} \right) + \bm{E} \cdot \left( \nabla V \right) \implies \underbrace{\left( \nabla \cdot \bm{E} \right)\ V}_{\parbox[c]{0.088\textwidth}{\vspace{-0.28cm}\begin{center} \small matches integrand above \end{center}}} = \nabla \cdot \left( V\ \bm{E} \right) - \bm{E} \cdot \left( \nabla V \right)
+\end{equation*}
+
+Substituting, we get
+\begin{align*}
+    U &= -\frac{\epsilon_o}{2} \int \bm{E} \cdot \underbrace{\left( \nabla V \right)}_{\displaystyle -\bm{E}} d^3x + \frac{\epsilon_o}{2} \int \nabla \cdot \left( V\ \bm{E} \right)\ d^3x \\
+    &= \frac{\epsilon_o}{2} \int \underbrace{\left( \bm{E} \cdot \bm{E} \right)}_{\displaystyle E^2}\ d^3x + \frac{\epsilon_o}{2} \int \nabla \cdot \left( V\ \bm{E} \right)\ d^3x
+\end{align*}
+
+Applying the divergence theorem to the second term yields
+\begin{equation*}
+    U = \frac{\epsilon_o}{2} \int E^2\ d^3x + \frac{\epsilon_o}{2} \oint \left( V\ \bm{E} \right) \cdot d\bm{A}
+\end{equation*}
+
+But what volume are we integrating over? Clearly, looking at the expression for energy in (\ref{eq:3:u}), we must at least integrate over the volume that encloses our charge distribution. But what's to stop us from integrating over all space? After all, $\rho = 0$ outside the charge distribution, so the extra space contributes nothing to the integral. Then the surface integral in the second term vanishes, since it examines $V$ and $\bm{E}$ at the edge of all space (which, for any real, finite source, is zero). Thus,
+\begin{equation*}
+    \boxed{U = \frac{\epsilon_o}{2} \int E^2\ d^3x} \qquad\qquad \parbox[c]{0.4\textwidth}{This is entirely in terms of fields, not charge. So we can look at the fields themselves as being very real things with real energy.}
+\end{equation*}
+
+Just for fun, let's take a look at the energy associated with the field made by a point charge at the origin. The field is
+\begin{equation*}
+    \bm{E} = \frac{1}{4\pi\epsilon_o} \frac{q\ \rhat}{r^2}
+\end{equation*}
+
+Substituting this into the energy expression and integrating over all space yields
+\begin{align*}
+    U &= \frac{\epsilon_o}{2} \int \bm{E} \cdot \bm{E}\ d^3x \\
+    &= \frac{\epsilon_o}{2} \left( \frac{q}{4\pi\epsilon_o} \right)^2 \int \left( \frac{\rhat}{r^2} \cdot \frac{\rhat}{r^2} \right)\ d^3x.
+\end{align*}
+
+Note that $\rhat \cdot \rhat = 1$. Taking the differential volume element to be $r^2\ \sin{\theta}\ dr\ d\theta\ d\phi$, we get
+\begin{align*}
+    U &= \frac{\epsilon_o}{2} \left( \frac{q}{4\pi\epsilon_o} \right)^2 \int \frac{1}{r^4} r^2\ \sin{\theta}\ dr\ d\theta\ d\phi \\
+    &= \frac{\epsilon_o}{2} \left( \frac{q}{4\pi\epsilon_o} \right)^2 \underbrace{\left( \int_0^{2\pi} d\phi \right)}_{\displaystyle 2\pi} \underbrace{\left( \int_0^{\pi} \sin{\theta}\ d\theta \right)}_{\displaystyle 2} \left( \int_0^{\infty} \frac{dr}{r^2} \right) \\
+    &= \frac{q^2}{8\pi\epsilon_o} \int_0^{\infty} \frac{dr}{r^2} \\
+    &= \frac{q^2}{8\pi\epsilon_o} \left( -\frac{1}{r} \right)\bigg|_{0}^{\infty} \qquad\qquad \text{which kind of diverges. That's bad.}
+\end{align*}
+
+What we just worked shows that $\bm{E}$-fields from point charges should contain infinite energy, thereby implying that point charges shouldn't be possible. But every experiment ever done indicates that an electron is a zero-radius true point. Fixing this apparent contradiction is one of the great achievements of quantum electrodynamics.
+
+\section*{Delta Functions and Point Sources}
+
+We've already seen indications that point charges behave a bit wonky, even though they do seem to exist experimentally. I'm afraid this is going to get a bit worse before it gets better.
+
+\vspace{1em}
+
+Let's take a look at Gauss's law again. If we take the divergence of an $\bm{E}$-field, we should recover the charge density that produced that field:
+\begin{equation*}
+    \nabla \cdot \bm{E} = \frac{\rho}{\epsilon_o}.
+\end{equation*}
+
+What happens if we take the divergence of the field made by a point charge at the origin? Applying the divergence operator in spherical coordinates gives us
+\begin{equation*}
+    \nabla \cdot \underbrace{\left( \frac{q}{4\pi\epsilon_o} \frac{\rhat}{r^2} \right)}_{\displaystyle \bm{E}_{\text{point}}} = \frac{1}{r^2} \frac{\partial}{\partial r} \left( \cancel{r^2} \frac{q}{4\pi\epsilon_o\ \cancel{r^2}} \right) = \frac{1}{r^2} \frac{\partial}{\partial r} \left( \frac{q}{4\pi\epsilon_o} \right) = 0\ \Scale[1.6]{?}
+\end{equation*}
+
+Well, according to that, the divergence of something like $\displaystyle \frac{\rhat}{r^2}$ is zero everywhere. Thus, so must $\rho$ be zero everywhere. But that can't be right. So what's the catch?
+
+\vspace{1em}
+
+The catch is that the operator $\displaystyle \frac{1}{r^2} \frac{\partial}{\partial r} \left( r^2 \right)$ isn't super well-defined at the origin. All we can conclude from the above is that $\nabla \cdot \bm{E}$ is zero everywhere \underline{but} the origin. To deal with the origin, let's take a look at delta functions first.
+
+\vspace{1em}
+
+A delta function is used to represent a finite amount of stuff compressed into an essentially zero-dimensional domain. In one dimension, a delta function $\delta(x)$ is \underline{defined} as the thingy that satisfies these two properties: $\delta(x)$ is a delta function if:
+
+\begin{equation*}
+    \displaystyle \delta(x) = \begin{cases} \displaystyle 0, & \text{if } x \neq 0 \\ \displaystyle \text{undefined}, & \text{if } x = 0 \end{cases}
+\end{equation*}
+
+and
+
+\begin{equation*}
+    \displaystyle \int \delta(x - a)\ f(x)\ dx = \begin{cases} \displaystyle f(a), & \text{if } a \text{ is in the domain of integration} \\ \displaystyle 0, & \text{otherwise} \end{cases}
+\end{equation*}
+
+
+Basically, it is a very sharply peaked function that, when present in an integral, plucks out the value of another function at one point:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.6]
+    \filldraw[color=black, fill=black!20] (-6,0) .. controls (-0.3,0.1) .. (-0.3,0.8) .. controls (0,10) .. (0.3,0.8) .. controls (0.3,0.1) .. (6,0) -- cycle;
+    \draw[black, ->] (-6.3,0) -- (6.3,0) node[black, anchor=north west] {$x$};
+    \draw[black, ->] (0,0) -- (0,9);
+    \node[black, below] at (0,0) {$a$};
+    \draw[black, <-] (0.05,5) -- (2,6) node[black, anchor=south west] {Area $= 1$};
+\end{tikzpicture}
+\label{fig:3:delta}
+\end{figure}
+
+So how do we represent $\rho$ for a point charge of size $q$ in 3D? How about a delta function:
+\begin{equation*}
+    \rho(\bm{x}) = q\ \delta^3(\bm{x}) \qquad\qquad \parbox[c]{0.33\textwidth}{(Or $\displaystyle q\ \delta^3(\bm{x} - \bm{x'})$ if the point charge is at $\bm{x'}$ instead of the origin)}
+\end{equation*}
+
+With that in mind, since $\displaystyle \nabla \cdot \bm{E} = \frac{\rho}{\epsilon_o}$, it should be the case that
+\begin{equation*}
+    \nabla \cdot \underbrace{\left( \frac{q}{4\pi\epsilon_o} \frac{\rhat}{r^2} \right)}_{\displaystyle \bm{E}_{\text{point}}} = \frac{1}{\epsilon_o} \underbrace{q\ \delta^3(\bm{x})}_{\displaystyle \rho}
+\end{equation*}
+
+And therefore
+\begin{equation*}
+    \nabla \cdot \left( \frac{\rhat}{r^2} \right) = 4\pi\delta^3(\bm{x}) \qquad\qquad \parbox[c]{0.25\textwidth}{Is this true?}
+\end{equation*}
+
+Well, it's true if
+\begin{enumerate}
+
+\item[(1)] $\displaystyle \nabla \cdot \left( \frac{\rhat}{r^2} \right) = 0$ everywhere but the origin. And we've established that.
+
+\item[(2)] $\displaystyle \int \left( \nabla \cdot \frac{\rhat}{r^2} \right)\ d^3x = 4\pi$ for a domain of integration that includes the origin.
+
+\end{enumerate}
+
+Let's integrate $\displaystyle \nabla \cdot \left( \frac{\rhat}{r^2} \right)$ over a sphere of radius $R$. Just doing that as a volume integral is tricky, since the integrand is undefined at the origin, so let's dodge the bad part by using the divergence theorem:
+\begin{align*}
+    \int \left( \nabla \cdot \frac{\rhat}{r^2} \right)\ d^3x &= \oint \frac{\rhat}{r^2} \cdot d\bm{A} \\
+    &= \oint \frac{\rhat}{r^2} \cdot \left( r^2\ \sin{\theta}\ d\theta\ d\phi\ \rhat \right) \\
+    &= \oint \sin{\theta}\ d\theta\ d\phi \\
+    &= \underbrace{\left( \int_0^{\pi} \sin{\theta}\ d\theta \right) \left( \int_0^{2\pi} d\phi \right)}_{\displaystyle =\ 4\pi}
+\end{align*}
+
+So it checks out. $\displaystyle \nabla \cdot \left( \frac{\rhat}{r^2} \right) = 4\pi\ \delta^3(r)$, and then
+\begin{equation*}
+    \nabla \cdot \left( \frac{q}{4\pi\epsilon_o} \frac{\rhat}{r^2} \right) = \frac{1}{\epsilon_o} q\ \delta^3(r) = \frac{\rho}{\epsilon_o}
+\end{equation*}
+
+and Gauss's law holds.
+
+\end{document}

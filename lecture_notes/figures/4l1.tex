@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{pstricks}
+\usepackage{pst-electricfield}
+\begin{document}
+\begin{pspicture*}(-3.2,-3)(3.2,3)
+\psframe*[linecolor=white!50](-3.2,-3)(3.2,3)
+% \psgrid[subgriddiv=0,gridcolor=gray,griddots=10]
+\psElectricfield[Q={[-1 0 -1][1 0 1]},linecolor=black]
+% \psEquipotential[Q={[-1 -2 2][1 2 2][-1 2 -2][1 -2 -2]},linecolor=blue](-6.1,-6.1)(6.1,6.1)
+% \psEquipotential[Q={[-1 -2 2][1 2 2][-1 2 -2][1 -2 -2]},linecolor=green,linewidth=2\pslinewidth,Vmax=0,Vmin=0](-6.1,-6.1)(6.1,6.1)
+\end{pspicture*}
+\end{document}

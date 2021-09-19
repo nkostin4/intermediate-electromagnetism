@@ -1,0 +1,395 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Set page geometry
+\usepackage[margin=2.5cm,headsep=0.5cm]{geometry}
+
+\input{../preamblex}
+
+\usepackage{fancyhdr,lastpage}
+\pagestyle{plain}
+
+\begin{document}
+
+\begin{center}
+    {\Huge Lecture 2: Electrostatics: Coulomb's Law and Gauss's Law} \\[0.5cm]
+    % {\Large January ??, 20??}
+\end{center}
+
+\vspace{1em}
+
+The general set of equations governing electromagnetism is as follows:
+\begin{equation*}
+    \parbox[c]{0.1\textwidth}{\begin{center}Maxwell equations\end{center}}\begin{cases} \displaystyle \nabla \cdot \bm{E} = \frac{\rho}{\epsilon_o} \\[1.0em] \displaystyle \nabla \cdot \bm{B} = 0 \\[1.0em] \displaystyle \nabla \times \bm{E} = -\frac{\partial \bm{B}}{\partial t} \\[1.0em] \displaystyle \nabla \times \bm{B} = \mu_o \bm{J} + \mu_o \epsilon_o \frac{\partial \bm{E}}{\partial t} \end{cases} \qquad\qquad \underbrace{\bm{F} = q \left( \bm{E} + \bm{v} \times \bm{B} \right)}_{\text{Lorentz force law}}
+\end{equation*}
+
+But we don't generally try to tackle that all at once. We'll get started by studying what happens when all the charges in the neighborhood are fixed in place --- what we call \emph{electrostatics}. Then all the time-varying terms go away, as do the currents, and in fact all \emph{sources} of $\bm{B}$-fields, leaving us with just
+\begin{equation*}
+    \begin{cases} \displaystyle \nabla \cdot \bm{E} = \frac{\rho}{\epsilon_o} \\[1.0em] \displaystyle \nabla \times \bm{E} = 0 \end{cases} \qquad\qquad \underbrace{\bm{F} = q \bm{E}}
+\end{equation*}
+
+And as an added bonus, you can even derive $\nabla \times \bm{E} = 0$ from Gauss's law, leaving us with only two unique equations. We might look at that derivation later on if we have time.
+
+Now, you may not be accustomed to seeing Gauss's law in differential form, so let's convert it to integral form. I'll integrate over some volume:
+\begin{equation*}
+    \int \left( \nabla \cdot \bm{E} \right)\ d^3x = \int \frac{\rho}{\epsilon_o}\ d^3x \qquad\qquad \parbox[c]{0.3\textwidth}{\small Note that there are several conventions for writing a differential volume element --- $dV$ is not preferred, since we sometimes use it for a dfferential voltage. You'll see $d^3x$, $dv$, and even $d\tau$ (Griffiths)}
+\end{equation*}
+
+On the right, integrating a volume charge density over a volume gives a charge:
+\begin{equation*}
+    \int \frac{\rho}{\epsilon_o}\ d^3x = \frac{1}{\epsilon_o} \int \rho\ d^3x = \frac{Q}{\epsilon_o}.
+\end{equation*}
+
+On the left, we can apply the divergence theorem:
+\begin{equation*}
+    \int \left( \nabla \cdot \bm{E} \right)\ d^3x = \oint \bm{E} \cdot d\bm{A}.
+\end{equation*}
+
+And we obtain the familiar intro version of Gauss's law:
+\begin{equation*}
+    \boxed{\oint \bm{E} \cdot d\bm{A} = \frac{Q_{\text{enc}}}{\epsilon_o}}
+\end{equation*}
+
+\begin{center}
+    \parbox[c]{0.3\textwidth}{\begin{gather*} \nabla \cdot \bm{E} = \frac{\rho}{\epsilon_o} \\ \Updownarrow \\ \oint \bm{E} \cdot d\bm{A} = \frac{Q_{\text{enc}}}{\epsilon_o} \end{gather*}} \qquad\qquad \parbox[c]{0.3\textwidth}{\small You can also take the integral form and derive from it the differential form. The steps are \emph{almost} the same in reverse, except for one tricky part that I won't spoil for you.}
+\end{center}
+
+These forms are equivalent insofar as you can derive one from the other, but say slightly different things. The differential form is a statement about \emph{single points} in space --- if there's some nonzero $\rho$ at a point, there's also a diverging $\bm{E}$-field there. The integral form is a statement about whole regions --- the flux through some shape is proportional to the amount of charge it encloses.
+
+\vspace{1em}
+
+I promised that you can get all of electrostatics from $\nabla \cdot \bm{E} = \frac{\rho}{\epsilon_o}$ and $\bm{F} = q\bm{E}$, and you can. That includes Coulomb's law, as long as we include one more not-terribly-controversial postulate. Start with a positive point charge of magnitude $q$ at the origin.
+
+\begin{minipage}{0.3\textwidth}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/2l1.png}
+\end{figure}
+\end{minipage}
+~
+\begin{minipage}{0.6\textwidth}
+    If we posit that space is rotationally invariant (changing the orientation of a system doesn't change the physics), we can immediately conclude that a point charge (being spherically symmetric) must produce a strictly radial field. To see this, try a little proof by contradiction.
+\end{minipage}
+
+\begin{minipage}{0.3\textwidth}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/2l2.png}
+\end{figure}
+\end{minipage}
+~
+\begin{minipage}{0.6\textwidth}
+    Suppose $q$ makes some non-radial field at some point. Then suppose we take the whole system and rotate it \ang{180}.
+\end{minipage}
+
+\vspace{1em}
+
+\begin{minipage}{0.3\textwidth}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/2l3.png}
+\end{figure}
+\end{minipage}
+~
+\begin{minipage}{0.6\textwidth}
+    The actual charge is unchanged, but now it makes the opposite field! This is kind of nonsense, and our claim that there could be a non-radial field must have been false.
+\end{minipage}
+
+\begin{minipage}{0.3\textwidth}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/2l4.png}
+\end{figure}
+\end{minipage}
+~
+\begin{minipage}{0.6\textwidth}
+    So we have a radial field. Let's draw a spherical Gaussian surface, with radius $r$, around it and write down Gauss's law.
+\end{minipage}
+
+\vspace{1em}
+
+\begin{equation*}
+    \oint \bm{E} \cdot d\bm{A} = \frac{Q_{\text{enc}}}{\epsilon_o} \qquad\qquad \parbox[c]{0.6\textwidth}{\small We're integrating $\bm{E} \cdot d\bm{A}$ all around that sphere. The differential vector $d\bm{A}$ is the area vector corresponding to a little patch of that surface, and points radially outward. The field $\bm{E}$ also points radially outward everywhere, so at any point on the Gaussian surface, $\bm{E} \cdot d\bm{A} = E\ dA$. (And $Q_{\text{enc}} = q$, naturally.)}
+\end{equation*}
+
+\vspace{1em}
+
+\begin{equation*}
+    \implies \oint E\ dA = \frac{q}{\epsilon_o} \qquad\qquad \parbox[c]{0.6\textwidth}{\small Now, this system is rotationally invariant (it has spherical symmetry), so the magnitude of the field $\bm{E}$ has to be the same everywhere on the domain of integration, and we can pull it out.}
+\end{equation*}
+
+\vspace{1em}
+
+\begin{equation*}
+    \implies E \underbrace{\oint dA}_{4\pi r^2} = \frac{q}{\epsilon_o} \qquad\qquad \parbox[c]{0.6\textwidth}{$\oint dA$ is just the area of the Gaussian surface, or $4\pi r^2$ in this case}
+\end{equation*}
+
+\begin{equation*}
+    \implies E = \frac{q}{4\pi\epsilon_o\ r^2} \qquad\qquad \parbox[c]{0.6\textwidth}{and we know $\bm{E}$ is radial, so} 
+\end{equation*}
+
+\begin{equation*}
+    \boxed{\bm{E}_{\text{point}} = \frac{q}{4\pi\epsilon_o\ r^2}\ \rhat} \qquad\qquad \parbox[c]{0.6\textwidth}{which is indeed Coulomb's law}
+\end{equation*}
+
+\newpage
+
+\begin{center}
+    {\Huge Lecture 2: Electrostatics: Coulomb's Law and Gauss's Law} \\[0.5cm]
+    {\Large January 12, 2021}
+\end{center}
+
+\vspace{1cm}
+
+Coulomb's law (empirically derived) reads
+\begin{equation*}
+    \bm{F} = \frac{k q_1 q_2\ \bm{r}}{r^3} = \frac{k q_1 q_2\ \rhat}{r^2}
+\end{equation*}
+
+We define electric field via
+\begin{equation*}
+    \bm{E} = \frac{\bm{F}}{q} \quad \implies \quad \bm{E} = \frac{kq\ \rhat}{r^2} \quad \text{\small (often still called Coulomb's law.)}
+\end{equation*}
+
+The principle of superposition applies:
+\begin{equation*}
+    \bm{E}_{\text{net}} = \sum\limits_{i = 1}^{N} \frac{k q_i\ \rhat}{r^2}
+\end{equation*}
+
+which can be generalized to continous distributions:
+\begin{equation*}
+    d\bm{E} = \frac{k dq}{r^3}\ \bm{r}.
+\end{equation*}
+
+Coulomb's law, the principle of superposition, and some math generates \emph{all} of of electrostatics.
+
+Now here's a nice Coulomb's law derivation. Having seen via Gauss's law that spherically symmetric charge distributions look like points from outside, and symmetric shells have zero field inside. We'll do this via integration.
+
+\vspace{1em}
+
+First we choose to belive that the spherical symmetry gives us a strictly radial electric field (more on this later) and as a fun trick, we look at the field at some distance along the $z$-axis.
+
+\vspace{1em}
+
+\begin{minipage}{0.4\textwidth}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/2l5.png}
+\end{figure}
+\end{minipage}
+~
+\begin{minipage}{0.57\textwidth}
+We start with Coulomb's law:
+\begin{equation*}
+    \bm{E} = \int \frac{k\ dQ}{r^3} \bm{r}, \quad \text{and} \quad dQ = \sigma\ dA = \sigma \underbrace{R^2 \sin{\theta}\ d\theta\ d\phi}_{dA}
+\end{equation*}
+For the $\bm{r}$-vector, only the $\khat$-component matters:
+\begin{equation*}
+    \bm{r} = \cancel{\left( -R\sin{\theta}\cos{\phi} \right)\ \ihat} + \cancel{\left( -R\sin{\theta}\sin{\phi} \right)\ \jhat} + \left( z - R\cos{\theta} \right)\ \khat \\
+\end{equation*}
+For the magnitude of the $\bm{r}$-vector,
+\begin{align*}
+    r &= \sqrt{\left( R\sin{\theta}\cos{\phi} \right)^2 + \left( R\sin{\theta}\sin{\phi} \right)^2 + \left( z - R\cos{\theta} \right)^2} \\
+      &= \sqrt{ R^2 \sin^2{\theta} \cancelto{1}{\left( \sin^2{\phi} + \cos^2{\phi} \right)} + \left( z - R\cos{\theta} \right)^2} \\[1em]
+      &= \sqrt{ R^2 \sin^2{\theta} + z^2 - 2Rz \cos{\theta} + R^2 \cos^2{\theta}} \\
+      &= \sqrt{R^2 + z^2 - 2Rz \cos{\theta}}
+\end{align*}
+\end{minipage}
+
+\vspace{1em}
+
+Putting everything together, we have
+\begin{align*}
+    \bm{E} &= \bigintsss_{0}^{2\pi} \bigintsss_{0}^{\pi} \frac{k\ \overbrace{\sigma\ R^2 \sin{\theta}\ d\theta\ d\phi}^{dQ}}{\underbrace{\left( R^2 + z^2 - 2Rz \cos{\theta} \right)^{3/2}}_{r^3}} \overbrace{\left( z - R\cos{\theta} \right)\ \khat}^{\bm{r}} \\
+           %&= k \sigma\ R^2 \underbrace{\left( \bigintsss_{0}^{2\pi} d\phi \right)}_{2\pi} \left( \bigintsss_{0}^{\pi} \frac{\sin{\theta}\ d\theta\ \ \left( z - R\cos{\theta} \right)}{\left( R^2 + z^2 - 2Rz \cos{\theta} \right)^{3/2}} \right)\ \khat \\
+           &= k \sigma\ R^2 {\left( \bigintsss_{0}^{2\pi} d\phi \right)} \left( \bigintsss_{0}^{\pi} \frac{\sin{\theta}\ d\theta\ \ \left( z - R\cos{\theta} \right)}{\left( R^2 + z^2 - 2Rz \cos{\theta} \right)^{3/2}} \right)\ \khat \\
+           &= 2\pi k \sigma\ R^2 \bigintsss_{0}^{\pi} \frac{\sin{\theta}\ d\theta\ \ \left( z - R\cos{\theta} \right)}{\left( R^2 + z^2 - 2Rz \cos{\theta} \right)^{3/2}}\ \khat
+\end{align*}
+
+Now we make the substitution $u = \cos{\theta}$ and $du = -\sin{\theta}\ d\theta$, thereby giving us
+\begin{align*}
+    E &= 2\pi k \sigma\ R^2 \int_{1}^{-1} \frac{-du\ (z - Ru)}{\left( R^2 + z^2 - 2Rz\cos{\theta} \right)^{3/2}} \\
+      &= 2\pi k \sigma\ R^2 \frac{1}{z^2} \left[ 1 + \left( \frac{z-R}{\sqrt{\left( z - R \right)^2}} \right) \right]
+\end{align*}
+
+For $z < R$ (\textit{i.e.} inside the sphere) the quantity $\frac{z-R}{\sqrt{\left(z-R\right)^2}}$ is $-1$ and we get $E = 0$. For $z > R$ (\textit{i.e.} outside the sphere) the quantity $\frac{z-R}{\sqrt{\left(z-R\right)^2}}$ is $1$ and we get $1+1 = 2$, giving us an electric field of
+\begin{equation*}
+    E = 2\pi k \overbrace{\left( \frac{Q}{4\pi R^2} \right)}^{\sigma} \frac{R^2}{z^2}\ \bigg[ 1 + 1 \bigg] = \frac{4\pi k \left( \frac{Q}{4\pi R^2} \right)}{z^2} = \frac{k Q}{z^2}. \quad \text{BAM!}
+\end{equation*}
+
+\vspace{1em}
+
+We've gotten this before with Gauss's law, and as it turns out
+
+\begin{center}
+    Coulomb's law $\implies$ Gauss's law + vice vera (almost)
+\end{center}
+
+Going from Coulomb's law to Gauss's law is hard to do formally so let's skip derivation for now and recall the definition of flux:
+
+\begin{minipage}{0.3\textwidth}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/2l7.png}
+\end{figure}
+\end{minipage}
+~
+\begin{minipage}{0.6\textwidth}
+    Conceptually, \emph{flux} is the number of field lines going through a given surface.
+\end{minipage}
+
+\vspace{1em}
+
+Gauss's Law is a statement about the flux through a closed surface, and is \emph{always} true. If we have good (\textit{i.e.} planar, cylindrical, or spherical) symmetry, we will \emph{also} be ablt to sove for the electric field $\bm{E}$. But we make many remarkably subtle arguments along the way.
+
+\vspace{0.5em}
+
+Let's do an infinite sheet, in Cartesian coordinates, with charge density $\sigma$.
+
+\vspace{0.5em}
+
+\begin{minipage}{0.3\textwidth}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/2l6.png}
+\end{figure}
+\end{minipage}
+~
+\begin{minipage}{0.6\textwidth}
+Suppose there exists a component of the electric field $\bm{E}$ in the $\ihat$-direction. Now, the charge has a variety of symmetries, including symmetry under reflection and rotation. Twisiting the sheet about the $z$-axis doesn't (physically) change it, and thus can't change the field. So assuming $E_x$ exists (and is non-zero) leads to a contradiction. Thus, $E_x$ (and, by a similar argument $E_y$) must be zero.
+\end{minipage}
+
+\vspace{1em}
+
+The component of the electric field in the $\khat$-direction, $E_z$, respects all symmetries and so can exist. Assuming a positive chage, it'd point away from the infinite sheet. I therefore draw a Gaussian surface like so
+
+\vspace{1em}
+
+\begin{minipage}{0.58\textwidth}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/2l8.png}
+\end{figure}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+And Gauss's law reads $\displaystyle \oint \bm{E} \cdot d\bm{A} = \frac{Q_{\text{enc}}}{\epsilon_o}$. 
+\vspace{0.8em}
+Let's start with the left-hand side:
+\begin{align*}
+    \oint \bm{E} \cdot d\bm{A} &= \hspace{-1em} \int\limits_{\text{\tiny top + bottom}} \hspace{-1.5em} \bm{E} \cdot d\bm{A} + \cancelto{0}{\int\limits_{\text{\tiny sides}} \hspace{-0.5em} \bm{E} \cdot d\bm{A}} \\[1em]
+                               &= \hspace{-1em} \int\limits_{\text{\tiny top + bottom}} \hspace{-1.5em} E\ dA = E \hspace{-1em} \int\limits_{\text{\tiny top + bottom}} \hspace{-1.5em} dA \\[1em]
+                               &= E \cdot 2A
+\end{align*}
+\end{minipage}
+
+\vspace{1em}
+
+\begin{center}
+\emph{Every single step} came with a reason. Know them.
+\end{center}
+
+\vspace{1em}
+
+Now for the right-hand side, we have $Q_{\text{enc}} = \sigma A_{\text{top}}$. So Gauss's law becomes
+
+\begin{gather*}
+    %\underbrace{E \cdot 2 A_{\text{top}}}_{\displaystyle \oint \bm{E} \cdot d\bm{A}} = \frac{\overbrace{\sigma\ A_{\text{top}}}^{Q_{\text{enc}}}}{\epsilon_o} \quad \implies \quad \boxed{E_{\text{sheet}} = \frac{\sigma}{\epsilon_o}}
+    \oint \bm{E} \cdot d\bm{A} = E \cdot 2 A_{\text{top}} = \frac{\sigma\ A_{\text{top}}}{\epsilon_o} = \frac{Q_{\text{enc}}}{\epsilon_o} \\
+    \implies \quad \boxed{E_{\text{sheet}} = \frac{\sigma}{2\epsilon_o}}
+\end{gather*}
+
+\begin{minipage}{0.4\textwidth}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/2l9.png}
+\end{figure}
+\end{minipage}
+~
+\begin{minipage}{0.55\textwidth}
+Notice this discontinuity in $E^{\perp}$ (the component of the electric field that is perpendicular to the surface):
+\begin{equation*}
+    \boxed{E_{\text{top}}^{\perp} - E_{\text{bottom}}^{\perp} = \frac{\sigma}{\epsilon_o}}
+\end{equation*}
+Always true. (Can always zoom in until the surface is locally flat and draw a tiny box.)
+\end{minipage}
+
+\vspace{1em}
+
+\begin{center}
+This is a boundary condition. It will come back, and it will bring a friend.
+\end{center}
+
+\vspace{1em}
+
+\begin{minipage}{0.4\textwidth}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/2l10.png}
+\end{figure}
+\end{minipage}
+~
+\begin{minipage}{0.55\textwidth}
+Now look at $E^{\parallel}$ above and below the sheet. Assume $\nabla \times \bm{E} = \bm{0}$.
+\vspace{1em}
+Then Stokes theorem implies 
+\begin{equation*}
+    \int \left( \nabla \times \bm{E} \right) \cdot d\bm{A} = \oint \bm{E} \cdot d\bm{\ell} = 0.
+\end{equation*}
+As the loop gets small, we must have
+\begin{equation*}
+    \boxed{E_{\text{top}}^{\parallel} = E_{\text{bottom}}^{\parallel}}
+\end{equation*}
+That is, the parallel component of the electric field is always continuous across surfaces.
+\end{minipage}
+
+\vspace{1em}
+
+Now, how is it that $\nabla \times \bm{E} = \bm{0}$? The easy way is with Faraday's law, which reads
+\begin{equation*}
+    \nabla \times \bm{E} = -\frac{\partial \bm{B}}{\partial t},
+\end{equation*}
+
+and we're in electro\emph{statics} so nothing has time-dependence.
+
+\vspace{1em}
+
+There's a harder way to argue that the electric field has zero curl, and that's straight through Coulomb's law:
+\begin{equation*}
+    \bm{E} = \int \frac{k\ \rho(\bm{x'})\ d^3x'}{\left| \bm{x} - \bm{x'} \right|^3} \left( \bm{x} - \bm{x'} \right).
+\end{equation*}
+
+The gradient of a function $f$ in spherical coordinates is
+\begin{equation*}
+    \nabla f = \frac{\partial f}{\partial r} \rhat + \frac{1}{r} \frac{\partial f}{\partial \theta} \thetahat + \frac{1}{r\ \sin{\theta}} \frac{\partial f}{\partial \phi} \phihat.
+\end{equation*}
+
+Take $\displaystyle f = \frac{1}{r}$. The gradient becomes
+\begin{equation*}
+    \nabla \left( \frac{1}{r} \right) = -\frac{1}{r^2} \rhat = -\frac{1}{r^2} \overbrace{\left( \bm{r} / r \right)}^{\rhat} = -\frac{\bm{r}}{r^3}.
+\end{equation*}
+
+Now we can replace $\bm{r}$ with it's definition: $\bm{r} = \bm{x} - \bm{x'}$. Then the same result holds:
+\begin{equation*}
+    \nabla \left( \frac{1}{\left| \bm{x} - \bm{x'} \right|} \right) = -\frac{\bm{x} - \bm{x'}}{\left| \bm{x} - \bm{x'} \right|^3}.
+\end{equation*}
+
+Putting this in Coulomb's law gives
+\begin{equation*}
+    \bm{E} = \int \frac{k\ \rho(\bm{x'})\ d^3x'}{\left| \bm{x} - \bm{x'} \right|^3} \left( \bm{x} - \bm{x'} \right) = \int k\ \rho(\bm{x'}) \left( \nabla \frac{1}{\left| \bm{x} - \bm{x'} \right|} \right)\ d^3x'.
+\end{equation*}
+
+Now, the gradient is being taken with respect to the real variable $\bm{x}$, not the source variable (dummy variable, if you will) $\bm{x'}$. That means we can interchange the order of integration and differentiation:
+\begin{equation*}
+    \bm{E} = \int k\ \rho(\bm{x'}) \left( \nabla \frac{1}{\left| \bm{x} - \bm{x'} \right|} \right)\ d^3x' = \nabla \underbrace{\left( \int \frac{k\ \rho(\bm{x'})\ d^3x'}{\left| \bm{x} - \bm{x'} \right|^3} \right)}_{\text{scalar}}
+\end{equation*}
+
+Taking the curl,
+\begin{equation*}
+    \nabla \times \bm{E} = \nabla \times \nabla \underbrace{\left( \int \frac{k\ \rho(\bm{x'})\ d^3x'}{\left| \bm{x} - \bm{x'} \right|^3} \right)}_{\text{scalar}} = \bm{0},
+\end{equation*}
+
+since the curl of a gradient is always zero.
+
+\end{document}

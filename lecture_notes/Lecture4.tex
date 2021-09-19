@@ -1,0 +1,244 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Set page geometry
+\usepackage[margin=2.5cm,headsep=0.5cm]{geometry}
+
+\input{../preamblex}
+
+\usepackage{fancyhdr,lastpage}
+\pagestyle{plain}
+
+\begin{document}
+
+\begin{center}
+    {\Huge Lecture 4: Multipole Expansions} \\[0.5cm]
+    %{\Large January ??, 20??}
+\end{center}
+
+\vspace{1em}
+
+We should be getting used to the idea that we can expand complex functions in terms of simpler functions. In calculus, we learn about Taylor expansions. For $f(x)$ near $x=a$,
+\begin{equation*}
+    f(x) = f(a) + f'(a) (x-a) + \frac{f''(a)}{2!} (x-a)^2 + \frac{f'''(a)}{3!} (x-a)^3 + \cdots
+\end{equation*}
+
+which will converge more or less quickly depending of $f$ and $a$. Popular Taylor series include the trig functions:
+\begin{equation*}
+    \begin{cases} \sin{(x)} &= x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots \\ \cos{(x)} &= 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots \end{cases}
+\end{equation*}
+
+You've also seen Fourier series expansions --- re-expressions of complicated functions in terms of sines and cosines:
+\begin{equation*}
+    f(x) = \frac{a_o}{2} + \sum\limits_{n=1}^{\infty} a_n \cos{(nx)} + \sum\limits_{n=1}^{\infty} b_n \sin{(nx)}
+\end{equation*}
+
+And there are many, many other ways to express a function in some basis. You've probably been learning about some general approaches in quantum right now (involving bras and kets).
+
+\vspace{1em}
+
+In electrostatics, the basic potential function for a point at the origin goes like $1/r$:
+\begin{equation*}
+    V_{\text{point}} = \frac{k\ q}{r}
+\end{equation*}
+
+More complicated systems (including points charges not situated at the origin) make more complicated potentials, but if we're decently far away we'll be able to expand $V(\bm{x})$ as a reciprocal power series:
+\begin{equation*}
+    V(\bm{x}) = \frac{\text{thing}_1}{r} + \frac{\text{thing}_2}{r^2} + \frac{\text{thing}_3}{r^3} + \cdots
+\end{equation*}
+
+We call this the \emph{multipole expansion}, for reasons that will become apparent. By convention, we set this up so that $r$ is actually the spherical radial coordiate $r$, not $\left| \bm{x} - \bm{x'} \right|$.
+
+Let's start with a simple example: two point charges of different sizes $q_1$ and $q_2$ at locations $\bm{x}_1$ and $\bm{x}_2$. I'll let the $\theta = 0$ axis lay along the line that includes the charges.
+
+\vspace{1em}
+
+\begin{minipage}{0.5\textwidth}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.63]
+    // x-axis
+    \draw[BLACK, ->] (-1,0) -- (10,0);
+    // y-axis
+    \draw[BLACK, ->] (0,-1) -- (0,10); 
+    // point P
+    \filldraw[BLACK] (7.098,7.098) circle (1.0pt) node[BLACK, right] {$P$};
+    // x vector
+    \draw[BLACK, ultra thick, ->] (0,0) -- (7.098,7.098) node[BLACK, midway, anchor=north] {$\bm{x}$};
+    // x - x1
+    \draw[BLACK] (0,3) -- (7.098,7.098) node[BLACK, midway, anchor=south east] {$\vec{x} - \vec{x}_1$};
+    // theta arc
+    \draw[BLACK, <->] (0,1.5) arc (90:45:1.5) node[BLACK, pos=0.6, anchor=south] {$\theta$};
+    // q2
+    \filldraw[BLACK] (0,1) circle (1.9pt) node[BLACK, anchor=east] {$q_2$};
+    \draw[BLACK, thick, ->] (0,0) -- (0,1) node[BLACK, midway, anchor=east] {$\bm{x}_2$};
+    // q1
+    \filldraw[BLACK] (0,3) circle (1.9pt) node[BLACK, anchor=east] {$q_1$};
+    \draw[BLACK, thick, ->] (0,0) -- (0,3) node[BLACK, pos=0.8, anchor=west] {$\bm{x}_1$};
+\end{tikzpicture}
+\end{figure}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+    We want to find the voltage at point $P$, which is at some arbitrary angle $\theta$. The exact expression is
+\begin{equation*}
+    V(\bm{x}) = \frac{k\ q_1}{\left| \bm{x} - \bm{x}_1 \right|} + \frac{k\ q_2}{\left| \bm{x} - \bm{x}_2 \right|}
+\end{equation*}
+\end{minipage}
+
+\vspace{1em}
+
+Let's use the law of cosines to expand the denominators:
+\begin{equation*}
+    \frac{1}{\left| \bm{x} - \bm{x}_1 \right|} = \frac{1}{\sqrt{r^2 - 2 r r_1 \cos{\theta} + r_1^2}} \qquad \text{where } \left| \bm{x} \right| = r \quad\text{and}\quad \left| \bm{x}_1 \right| = r_1.
+\end{equation*}
+
+We're assuming we're pretty far away so $r \gg r_1 + r_2$, and the angles $\theta$ for the sources are about the same. Pulling out an $r$,
+
+\begin{equation*}
+    \frac{1}{\left| \bm{x} - \bm{x}_1 \right|} = \frac{1}{r} \frac{1}{\sqrt{1 + \frac{r_1^2 - 2 r r_1 \cos{\theta}}{r^2}}} = \frac{1}{r} \left( 1 - \frac{r_1^2 - 2 r r_1 \cos{\theta}}{r^2} \right)^{-1/2}
+\end{equation*}
+
+The what's in the parentheses is of the form $\displaystyle \left(1 + \text{small} \right)^n$, which is ripe for a binomial expansion. We know
+\begin{equation*}
+    \left(1 + x\right)^{-1/2} = 1 - \frac{1}{2}x + \frac{3}{8} x^2 - \left( \text{higher order terms} \right).
+\end{equation*}
+
+Keeping those first three terms, we get
+\begin{align*}
+    \frac{1}{\left| \bm{x} - \bm{x}_1 \right|} = \frac{1}{r} \left( 1 - \frac{r_1^2 - 2 r r_1 \cos{\theta}}{r^2} \right)^{-1/2} &= \frac{1}{r} \left[1 + \frac{1}{2} \frac{2 r r_1 \cos{\theta} - r_1^2}{r^2} + \frac{3}{8} \left( \frac{4r^2 r_1^2 \cos^2{\theta} - 4 r r_1^3 \cos{\theta} + r_1^4}{r^4} \right)  \right] \\
+                                                                                                                                &= \frac{1}{r} + \frac{r_1 \cos{\theta}}{r^2} - \frac{r_1^2}{2r^3} + \frac{3}{2} \frac{r_1^2}{r^3} \cos^2{\theta} - \frac{3}{2} \frac{r_1^3}{r^4} \cos{\theta} + \frac{3}{8} \frac{r_1^4}{r^5}
+\end{align*}
+
+Let's drop all terms higher order than $1/r^3$, and also include $q_2$. Then our three-term multipole expansion of this potential becomes
+\begin{equation}
+    V(r,\theta) = k \left[ \underbrace{\frac{q_1 + q_2}{r}}_{\text{monopole}} + \underbrace{\frac{\left( q_1 r_1 + q_2 r_2 \right) \cos{\theta}}{r^2}}_{\text{dipole}} + \underbrace{\frac{q_1 r_1^2 + q_2 r_2^2}{2r^3} \left( 3\cos^2{\theta} - 1 \right)}_{\text{quadrupole}} \right] \tag{1}\label{eq:multipole}
+\end{equation}
+
+These terms are referred to as the \emph{monopole}, \emph{dipole}, and \emph{quadrupole} terms, respectively. Physically, we interpret them as follows.
+
+\vspace{1em}
+
+A point charge (a monopole) makes a voltage that goes like $1/r$ (and a field that goes like $1/r^2$). A system of charges has a term in its voltage that goes like $\displaystyle\frac{k\ q_{\text{total}}}{r}$, where $q_{\text{total}}$ is the total charge of the system.
+
+\vspace{1em}
+
+A standard dipole is two charges of the same magnitude $q$ and opposite sign, separated by some distance $d$.
+
+\vspace{1em}
+
+\begin{minipage}{0.5\textwidth}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figures/4l1.png}
+\end{figure}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+    The net charge of a true dipole is zero, so far away it has no $1/r$ potential. It does, however, have some leftover $1/r^2$ potential. The equal and opposite charges screen away some, but not all of $V$. \\[1.5em]
+The dipole moment of this pair is defined as
+\begin{equation*}
+    \bm{p} \equiv q \bm{d},
+\end{equation*}
+And its potential far away looks like
+\begin{equation*}
+    V(\bm{x}) = \frac{\bm{p} \cdot \rhat}{4\pi\epsilon_o}
+\end{equation*}
+\end{minipage}
+
+\vspace{1em}
+
+And a general definition for the dipole moment of any charge system is
+\begin{equation*}
+    \bm{p} \equiv q \bm{x'},
+\end{equation*}
+
+where $\bm{x'}$ is the location of the charge. So something that looks like $\displaystyle \frac{q_1 r_1 \cos{\theta}}{r^2}$ is exactly a dipole potential. Note that most molecules are polar to some degree. You can also find tables of dipole moments easily enough.
+
+\vspace{1em}
+
+A quadrupole is two dipole back to back in such a way that their dipole moments cancel, as do their voltages that go like $1/r^2$, leaving a $1/r^3$ remainder.
+
+\begin{minipage}{0.5\textwidth}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.63]
+    \filldraw[BLACK] (-2,2) circle (4pt) node[BLACK, anchor=south east] {$+$};
+    \filldraw[BLACK] (-2,-2) circle (4pt) node[BLACK, anchor=north east] {$-$};
+    \filldraw[BLACK] (2,-2) circle (4pt) node[BLACK, anchor=north west] {$+$};
+    \filldraw[BLACK] (2,2) circle (4pt) node[BLACK, anchor=south west] {$-$};
+\end{tikzpicture}
+\end{figure}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+    $V \propto \frac{1}{r^3}$, \hspace{1em} $E \propto \frac{1}{r^4}$ \\[1em]
+    We've used quads in field session, in particular the mass spectrometry unit.
+\end{minipage}
+
+\vspace{1em}
+
+Deriving an expression for $V$ for a quadrupole takes a bit more work but is essentially what we did before. For now, take my word for it that the third term in \ref{eq:multipole} is a quadrupole-like term.
+
+\vspace{1em}
+
+So now we can see what a multipole expansion is, physically. We're expanding a potential function in a basis, where the elements of the basis include the kinds of field made by a monopole, a dipole, a quadrupole, and so on.
+
+\vspace{1em}
+
+What we did with the two charge system above is generalizable. For any localized charge distribution, if we're far from the source,
+
+\begin{equation*}
+    V(\bm{x}) \approx k \left[ \frac{Q_{\text{net}}}{r} + \frac{\rhat \cdot \bm{p}}{r^2} + \frac{\rhat \cdot \overleftrightarrow{Q} \cdot \rhat}{r^3} \right],
+\end{equation*}
+
+where $Q_{\text{net}}$ is the monopole moment of the whole system: $\displaystyle Q_{\text{net}} = \int \rho(\bm{x}) d^3x$, $\bm{p}$ is the dipole moment of the system, $\displaystyle \bm{p} = \int \bm{x'} \rho(\bm{x'}) d^3x'$.
+
+And $\overleftrightarrow{Q}$ is the quadrupole moment: $\displaystyle \overleftrightarrow{Q} = \frac{1}{2} \int \left( 3 \bm{x}\bm{x} - r^2 \overleftrightarrow{I} \right) \rho(\bm{x})\ d^3x$.
+
+\vspace{1em}
+
+You may be wondering what the hell I just wrote.
+
+The monopole moment needs no orientation. It's a scalar. A dipole moment has orientation. It's a vector. And a quadrupole has a higher degree of ordering, and is a \emph{second-rank tensor}. I'm indicating those with a double-headed arrow.
+
+A rank-2 tensor is basically a matrix that obeys certain additional rules, which we won't worry about here.
+
+\vspace{1em}
+
+$\displaystyle \overleftrightarrow{I}$ is the indentity tensor, which in two-dimensions is $\displaystyle \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$.
+
+\vspace{1em}
+
+Now, $V$ is always a scalar, never a tensor or a vector. You'll notice the expansion of $V$ includes an $\rhat \cdot \bm{p}$, where the dot product ``picks out'' the component of $\bm{p}$ that lies along our observation axis. Similarly, we pick out elemnts of $\overleftrightarrow{Q}$.
+
+\vspace{1em}
+
+An example: I'll calculate $\rhat \cdot \overleftrightarrow{I} \cdot \rhat$. It's nothing more than matrix operations. Let's do it in 2D to make it easier.
+
+We can write $\displaystyle \rhat = \begin{pmatrix} r_x/r \\[0.5em] r_y/r \end{pmatrix}$, with $\displaystyle r_x^2 + r_y^2 = r^2$. Then 
+
+\begin{equation*}
+    \overleftrightarrow{I}\cdot\rhat = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \cdot \begin{pmatrix} r_x/r \\[0.5em] r_y/r \end{pmatrix} = \begin{pmatrix} r_x/r \\[0.5em] r_y/r \end{pmatrix}.
+\end{equation*}
+
+And
+
+\begin{equation*}
+    \rhat \cdot \left( \overleftrightarrow{I} \cdot \rhat \right) = \begin{pmatrix} r_x/r & r_y/r \end{pmatrix} \begin{pmatrix} r_x/r \\[0.5em] r_y/r \end{pmatrix} = \frac{r_x^2}{r^2} + \frac{r_y^2}{r^2} = 1.
+\end{equation*}
+
+So that means that $\rhat \cdot \overleftrightarrow{I} \cdot \rhat = 1$, which makes an odd kind of sense, if you stop and think about it.
+
+One last fun fact: $V(\bm{x})$ \emph{does not} change when you change your origin. But that's okay as long as $-\nabla V$ doesn't.
+
+\begin{mdframed}[backgroundcolor=black!4, align=center, userdefinedwidth=0.8\textwidth, topline=false, bottomline = false, leftline = false, rightline = false, frametitle = {Storytime with Pat}]
+
+Electrostatics, industrial London, and coal.
+
+\end{mdframed}
+
+\newpage
+
+\end{document}

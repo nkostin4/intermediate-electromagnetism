@@ -1,0 +1,313 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Set page geometry
+\usepackage[margin=2.5cm,headsep=0.5cm]{geometry}
+
+\input{../preamblex}
+
+\usepackage{fancyhdr,lastpage}
+\pagestyle{plain}
+
+\begin{document}
+
+\begin{center}
+    {\Huge Lecture 1: Introduction and Framing} \\[0.5cm]
+    % {\Large January ??, 20??}
+\end{center}
+
+\vspace{1em}
+
+Electromagnetism is a field theory. As such, it requires us to specify two things:
+
+\begin{enumerate}
+
+\item[(1)] How matter produces fields
+
+\item[(2)] How fields affect matter
+
+\end{enumerate}
+
+Note that for E\&M, ``matter'' means charges.
+
+\vspace{1em}
+
+Point (1) is handled by the Maxwell equations. These are our source equations (\emph{i.e.} equations that describe how sources make fields).
+
+\begin{table}[H]
+\centering
+\captionsetup{width=0.8\textwidth,labelfont={color=black,bf},textfont={color=black}}
+\caption*{Maxwell's equations and their interpretation.}
+\begin{tabular}{@{}c|c@{}}
+\toprule
+Equation & Interpretation \\ \midrule
+{\parbox[c]{0.3\linewidth}{\begin{gather*} \nabla \cdot \bm{E} = \frac{\rho}{\epsilon_o} \end{gather*}}} & {\parbox[c]{0.6\linewidth}{\begin{center} $\bm{E}$-fields with divergence come from charges (electric monopoles). \end{center}}} \\ \midrule
+{\parbox[c]{0.3\linewidth}{\begin{gather*} \nabla \cdot \bm{B} = 0 \end{gather*}}} & {\parbox[c]{0.6\linewidth}{\begin{center} $\bm{B}$-fields with divergence don't exist (no magnetic monopoles). \end{center}}} \\ \midrule
+{\parbox[c]{0.3\linewidth}{\begin{gather*} \nabla \times \bm{E} = -\frac{\partial \bm{B}}{\partial t} \end{gather*}}} & {\parbox[c]{0.6\linewidth}{\begin{center} $\bm{E}$-fields with curl come from time-varying $\bm{B}$-fields --- and those \emph{only}. \end{center}}} \\ \midrule
+{\parbox[c]{0.3\linewidth}{\begin{align*} \nabla \times \bm{B} &= \mu_o \bm{J} + \mu_o \epsilon_o \frac{\partial \bm{E}}{\partial t} \\ &= \mu_o \left( \bm{J} + \bm{J}_D \right) \end{align*}}} & {\parbox[c]{0.6\linewidth}{\begin{center} $\bm{B}$-fields with curl come from currents (moving electric monopoles) and from time-varying $\bm{E}$-fields. Sometimes we refer to $\epsilon_o \frac{\partial \bm{E}}{\partial t}$ as displacement current and bundle the $J$'s together. \end{center}}} \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\vspace{1em}
+
+Point (2) comes from the Lorentz force law: $\bm{F} = q \left( \bm{E} + \bm{v} \times \bm{B} \right)$.
+
+\vspace{1em}
+
+Charges feel forces from $E$-fields \emph{always} and from $B$-fields when the charges are in motion. This means that observers in different inertial reference frames might disagree on whether a particular charge is experiencing a magnetic force at all, but that's okay.
+
+\vspace{1em}
+
+Eventually we discover that fields themselves are different in different reference frames. This isn't a throwaway result since fields are very real things, carrying energy and momentum.
+
+\vspace{1em}
+
+There's another equation that often gets listed as fundamental --- the so-called continuity equation \footnote{There are many ``continuity equations'' for many contexts. ``The'' continuity equation is a bit of a misnomer}:
+\begin{equation*}
+    \nabla \cdot \bm{J} = -\frac{\partial \rho}{\partial t}.
+\end{equation*}
+
+This is a statement of local conservation of charge: not only is charge conserved globally, in that the total amount never changes, but it's also conserved locally, meaning that to get from here to there, it has to move through the intervening space.
+
+\begin{figure}[H]
+\captionsetup{width=0.8\textwidth,labelfont={color=black,bf},textfont={color=black}}
+\centering
+\begin{subfigure}{1.0\linewidth}
+\centering
+    \begin{tikzpicture}[scale=0.96]
+    \draw (0,0) -- (4,0) -- (4,4) -- (0,4) -- cycle;
+    \foreach \x in {1,...,25}
+        {
+          \pgfmathrandominteger{\a}{10}{190}
+          \pgfmathrandominteger{\b}{10}{190}
+          \fill (\a*0.01,\b*0.01) circle (0.05);
+        };
+    \foreach \x in {1,...,25}
+        {
+          \pgfmathrandominteger{\a}{10}{190}
+          \pgfmathrandominteger{\b}{210}{390}
+          \fill (\a*0.01,\b*0.01) circle (0.05);
+        };
+    \foreach \x in {1,...,25}
+        {
+          \pgfmathrandominteger{\a}{210}{390}
+          \pgfmathrandominteger{\b}{10}{190}
+          \fill (\a*0.01,\b*0.01) circle (0.05);
+        };
+    \foreach \x in {1,...,25}
+        {
+          \pgfmathrandominteger{\a}{210}{390}
+          \pgfmathrandominteger{\b}{210}{390}
+          \fill (\a*0.01,\b*0.01) circle (0.05);
+        };
+    \fill[blue] (2,2) circle (0.1);
+    \draw (6,0) -- (10,0) -- (10,4) -- (6,4) -- cycle;
+    \foreach \x in {1,...,25}
+        {
+          \pgfmathrandominteger{\a}{610}{790}
+          \pgfmathrandominteger{\b}{10}{190}
+          \fill (\a*0.01,\b*0.01) circle (0.05);
+        };
+    \foreach \x in {1,...,25}
+        {
+          \pgfmathrandominteger{\a}{610}{790}
+          \pgfmathrandominteger{\b}{210}{390}
+          \fill (\a*0.01,\b*0.01) circle (0.05);
+        };
+    \foreach \x in {1,...,25}
+        {
+          \pgfmathrandominteger{\a}{810}{990}
+          \pgfmathrandominteger{\b}{10}{190}
+          \fill (\a*0.01,\b*0.01) circle (0.05);
+        };
+    \foreach \x in {1,...,25}
+        {
+          \pgfmathrandominteger{\a}{810}{990}
+          \pgfmathrandominteger{\b}{210}{390}
+          \fill (\a*0.01,\b*0.01) circle (0.05);
+        };
+        
+    \fill[blue] (2,2) circle (0.1);
+\end{tikzpicture}
+\caption*{A \textcolor{blue}{blue dot} in the left box.}
+\end{subfigure}
+~
+\begin{subfigure}{1.0\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.96]
+    \draw (0,0) -- (4,0) -- (4,4) -- (0,4) -- cycle;
+    \foreach \x in {1,...,25}
+        {
+          \pgfmathrandominteger{\a}{10}{190}
+          \pgfmathrandominteger{\b}{10}{190}
+          \fill (\a*0.01,\b*0.01) circle (0.05);
+        };
+    \foreach \x in {1,...,25}
+        {
+          \pgfmathrandominteger{\a}{10}{190}
+          \pgfmathrandominteger{\b}{210}{390}
+          \fill (\a*0.01,\b*0.01) circle (0.05);
+        };
+    \foreach \x in {1,...,25}
+        {
+          \pgfmathrandominteger{\a}{210}{390}
+          \pgfmathrandominteger{\b}{10}{190}
+          \fill (\a*0.01,\b*0.01) circle (0.05);
+        };
+    \foreach \x in {1,...,25}
+        {
+          \pgfmathrandominteger{\a}{210}{390}
+          \pgfmathrandominteger{\b}{210}{390}
+          \fill (\a*0.01,\b*0.01) circle (0.05);
+        };
+    \draw[blue, dashed] (2,2) circle (0.1);
+    \draw (6,0) -- (10,0) -- (10,4) -- (6,4) -- cycle;
+    \foreach \x in {1,...,25}
+        {
+          \pgfmathrandominteger{\a}{610}{790}
+          \pgfmathrandominteger{\b}{10}{190}
+          \fill (\a*0.01,\b*0.01) circle (0.05);
+        };
+    \foreach \x in {1,...,25}
+        {
+          \pgfmathrandominteger{\a}{610}{790}
+          \pgfmathrandominteger{\b}{210}{390}
+          \fill (\a*0.01,\b*0.01) circle (0.05);
+        };
+    \foreach \x in {1,...,25}
+        {
+          \pgfmathrandominteger{\a}{810}{990}
+          \pgfmathrandominteger{\b}{10}{190}
+          \fill (\a*0.01,\b*0.01) circle (0.05);
+        };
+    \foreach \x in {1,...,25}
+        {
+          \pgfmathrandominteger{\a}{810}{990}
+          \pgfmathrandominteger{\b}{210}{390}
+          \fill (\a*0.01,\b*0.01) circle (0.05);
+        };
+        
+    \draw[blue] (2,2) circle (0.1);
+    \fill[blue] (8,2) circle (0.1);
+    \draw[blue, ->] (2.1,2.1) .. controls (4,4) and (6,0) .. (7.9,1.9);
+\end{tikzpicture}
+\caption*{A \textcolor{blue}{blue dot} in the right box.}
+\label{fig:1:continuityb}
+\end{subfigure}
+~
+\caption*{An illustration of continuity. In order for the \textcolor{blue}{blue dot} to have move from the left box to the right box, it must necessarily have crossed through the intervening space.}
+\label{fig:1:continuity}
+\end{figure}
+
+Conservation of charge is certainly fundamental, but it isn't a postulate - we can derive it from other laws. Start with the Ampere-Maxwell equation:
+
+\begin{equation*}
+    \nabla \times \bm{B} = \mu_o \bm{J} + \mu_o \epsilon_o \frac{\partial \bm{E}}{\partial t}.
+\end{equation*}
+
+Take the divergence of both sides:
+
+\begin{gather*}
+    \nabla \cdot \left( \nabla \times \bm{B} \right) = \nabla \cdot \left( \mu_o \bm{J} + \mu_o \epsilon_o \frac{\partial \bm{E}}{\partial t} \right) \\
+    0 = \mu_o \left[ \nabla \cdot \bm{J} + \epsilon_o \nabla \cdot \left( \frac{\partial \bm{E}}{\partial t} \right) \right] \\
+    0 = \nabla \cdot \bm{J} + \frac{d}{dt} \underbrace{\left( \epsilon_o \nabla \cdot \bm{E} \right)}_{\displaystyle = \rho} \\
+    \implies \boxed{\nabla \cdot \bm{J} = -\frac{\partial \rho}{\partial t}}
+\end{gather*}
+
+For charge to be entering or leaving a region, there must be a divergence in the current. Note that this gives another way to tell that Amp{\'e}re's law ($\displaystyle \nabla \times \bm{B} = \mu_o \bm{J}$) is incomplete without Maxwell's correction.
+
+\vspace{1em}
+
+\begin{mdframed}[backgroundcolor=black!4, align=center, userdefinedwidth=0.8\textwidth, topline=false, bottomline = false, leftline = false, rightline = false, frametitle = {Interlude}]
+
+What are divergences and curls? \hspace{2cm} \iclicker[scale=0.28]Clicker question
+
+\end{mdframed}
+
+\vspace{1cm}
+
+These Maxwell equations are in differential form, which is arguably the cleanest form, describing what's happening at a single point in space, as compared to the the integral forms that sample an entire region. We move back and forth between these forms using the divergence theorem and Stokes' theorem, which are higher dimensional generalizations of the fundamental theorem of calculus.
+
+\begin{table}[H]
+\centering
+\captionsetup{width=0.8\textwidth,labelfont={color=black,bf},textfont={color=black}}
+\begin{tabular}{@{}c|c|c@{}}
+\toprule
+\parbox[c]{0.3\textwidth}{\begin{center}Fundamental Theorem of Calculus\end{center}} & \parbox[c]{0.3\textwidth}{\begin{equation*} \int_a^b f'(x)\ dx = f(b) - f(a) \end{equation*}} & \parbox[c]{0.3\textwidth}{\begin{center} Information about function on 1D domain contained in function's antiderivative at the domain's boundary (zero-dimensional points) \end{center}} \\ \midrule
+\parbox[c]{0.3\textwidth}{\begin{center}Stokes' Theorem\end{center}} & \parbox[c]{0.3\textwidth}{\begin{equation*} \int \left( \nabla \times \bm{F} \right) \cdot d\bm{A} = \oint \bm{F} \cdot d\bm{\ell} \end{equation*}} & \parbox[c]{0.3\textwidth}{\begin{center} Information about function on 2D domain contained in 1D boundary \end{center}} \\ \midrule
+\parbox[c]{0.3\textwidth}{\begin{center}Divergence Theorem\end{center}} & \parbox[c]{0.3\textwidth}{\begin{equation*} \int \left( \nabla \cdot \bm{F} \right) dV = \oint \bm{F} \cdot d\bm{A} \end{equation*}} & \parbox[c]{0.3\textwidth}{\begin{center} Information about function on 3D domain contained in 2D boundary \end{center}} \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{mdframed}[backgroundcolor=black!4, align=center, userdefinedwidth=0.8\textwidth, topline=false, bottomline = false, leftline = false, rightline = false, frametitle = {Group Activity}]
+
+Cconvert Gauss's law from differential form to integral form and back using the divergence theorem.
+
+\end{mdframed}
+
+Correct integral expressions aren't always super transparent. (\iclicker[scale=0.28]Faraday clicker) For instance, one integral form of Faraday's law, $\displaystyle \oint \bm{E} \cdot d\bm{\ell} = -\frac{d}{dt} \int \bm{B} \cdot d\bm{A}$ with no qualifiers is simply false and will lead you to conclude that curly $\bm{E}$-fields exist when they don't. Consider the following.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.15]
+    
+    \fill[blue!10, rounded corners] (-19, -13) rectangle (19, 13);
+    
+    \node[blue] at (-9,3) {$\vec{B}$};
+
+    \foreach \x in {-18, -12, -6, 0, 6, 12, 18}
+    \foreach \y in {-12, -6, 0, 6, 12}
+    {
+    \begin{scope}[shift={(\x,\y)}]
+        \draw[blue] (0,0) circle (1);
+        \draw[blue] (45:1) -- (225:1);
+        \draw[blue] (135:1) -- (315:1);
+    \end{scope}
+    }
+    
+    \draw[black, ultra thick, rounded corners] (10,-5) rectangle (26,5);
+    \draw[black] (26,0) -- (36,0) node[black, right]{\okay[xscale=-0.6,yscale=0.6]};
+    \draw[black, thick, ->] (27,2) -- (34,2) node[black, midway, above] {$v$};
+    
+    \node[black, text width=6cm] at (70,4) {The equation $\displaystyle \oint \bm{E} \cdot d\bm{\ell} = -\frac{d}{dt} \int \bm{B} \cdot d\bm{A}$ does not hold when the boundary is time-varying, such as in the situation shown to the left.};
+    
+\end{tikzpicture}
+\end{figure}
+
+But $\displaystyle \oint \bm{E} \cdot d\bm{\ell} = -\int \frac{\partial \bm{B}}{\partial t} \cdot d\bm{A}$ is true always. And we can get the time-derivative out using the 3D Leibniz rule (a kind of chain rule covering domains)
+\begin{align*}
+    \text{1D Leibniz Rule:}\quad& \frac{d}{dt} \int_{a(t)}^{b(t)} f(x,t)\ dx = \frac{db}{dt} f(b,t) - \frac{da}{dt} f(a,t) + \int_a^b \frac{\partial}{\partial t} f(x, t)\ dx \\
+    \text{3D Leibniz Rule:}\quad& \frac{d}{dt} \int\limits_{A(t)} \bm{F}(\bm{x}, t) \cdot d\bm{A} = -\oint \left( \bm{v} \times \bm{F} \right) \cdot d\bm{\ell} + \int \left( \frac{\partial \bm{F}}{\partial t} + \left( \nabla \cdot \bm{F} \right) \bm{v} \right) \cdot d\bm{A}
+\end{align*}
+
+Letting $\bm{B}$ be the vector field gives
+\begin{gather*}
+    \frac{d}{dt} \int\limits_{A(t)} \bm{B}(\bm{x}, t) \cdot d\bm{A} = \int \left( \frac{\partial \bm{B}}{\partial t} + \cancelto{0}{\left( \nabla \cdot \bm{B} \right)} \bm{v} \right) \cdot d\bm{A} - \oint \left( \bm{v} \times \bm{B} \right) \cdot d\bm{\ell} \\
+    \implies \frac{d}{dt} \int \bm{B} \left( \bm{x}, t \right) \cdot d\bm{A} + \oint \left( \bm{v} \times \bm{B} \right) \cdot d\bm{\ell} = \int \frac{\partial \bm{B}}{\partial t} \cdot d\bm{A}
+\end{gather*}
+
+Again, we know that $\displaystyle \oint \bm{E} \cdot d\bm{\ell} = -\int \frac{\partial \bm{B}}{\partial t} \cdot d\bm{A}$ is true always. So sub into that we get
+\begin{gather*}
+    \oint \bm{E} \cdot d\bm{\ell} = -\frac{d}{dt} \int \bm{B} \cdot d\bm{A} - \oint \left( \bm{v} \times \bm{B} \right) \cdot d\bm{\ell} \\
+    \implies \underbrace{\oint \left( \bm{E} + \bm{v} \times \bm{B} \right) \cdot d\bm{\ell}}_{\displaystyle \text{emf}} \quad = \quad \underbrace{-\frac{d}{dt} \int \bm{B} \cdot d\bm{A}}_{\displaystyle -\frac{d\Phi}{dt}}
+\end{gather*}
+
+Which is the correct integral form of Faraday's law, and explicitly shows both the $\bm{E}$-field and the motional contributions to the emf.
+
+\vspace{1cm}
+
+Altogether, Maxwell's equations
+\begin{gather*}
+    \nabla \cdot \bm{E} = \frac{\rho}{\epsilon_o} \qquad\qquad \nabla \cdot \bm{B} = 0 \\
+    \nabla \times \bm{E} = -\frac{\partial \bm{B}}{\partial t} \qquad\qquad \nabla \times \bm{B} = \mu_o \bm{J} + \mu_o\epsilon_o \frac{\partial \bm{E}}{\partial t}
+\end{gather*}
+
+and the Lorentz force law
+\begin{equation*}
+    \bm{F} = q\left( \bm{E} + \bm{v} \times \bm{B} \right)
+\end{equation*}
+
+give us all of classical E\&M. The rest is sorting out the details.
+
+\end{document}
