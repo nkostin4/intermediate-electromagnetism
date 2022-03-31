@@ -7,10 +7,3 @@ This repository contains the course notes (and a few other things) for the PHGN 
 ## Contact
 
 Email: `nkostin@mines.edu`
-
-## Completed Notes
-
-+ Lecture 1
-+ Lecture 2
-+ Lecture 3
-+ Lecture 4
