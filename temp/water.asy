@@ -1,6 +1,6 @@
 import three;
 
-currentprojection=perspective(26*(0,1,-1), up=X);
+currentprojection=perspective(28*(0,1,-1), up=X);
 
 defaultpen(fontsize(1pt));
 
